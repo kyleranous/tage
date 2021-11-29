@@ -9,6 +9,11 @@ I am open sourcing the project for other people who may want to do something sim
 
 A text based adventure is going to need a text parser to interpret responses. Initially the commands will be easy, and she would be playing with someone, so the commands will be in the realm of "Go Left", "Open the door", "Look out the window". I'm really not sure how to set that up initially. Zork had a pretty indepth text parser, hopefully I can find some pseudo code on that.
 
-I will also need to come up with a way to create "maps". There was a guy on Youtube who had a series on creating a 3D game engine from scratch in C++, I remember he had a creative way of "generating" maps with a textual representation in the code. That may be a good area to look at. 
+I will also need to come up with a way to create "maps". There was a guy ([javidx9](https://www.youtube.com/c/javidx9)) on Youtube who had a series on creating a 3D game engine from scratch in C++, I remember he had a creative way of "generating" maps with a textual representation in the code. That may be a good area to look at. 
 
 There will also need to be a library of stories that can be pulled from. I may ask my wife to start coming up with some....Or maybe enlist the help of someone who is really good at DnD to give me some pointers? 
+
+
+## References
+* [Zork the Great Inner Workings](https://medium.com/swlh/zork-the-great-inner-workings-b68012952bdc) - Analysis of the Zork Text Parser
+* [How to Write a Text Adventure in Python Part 2: The World Space](https://letstalkdata.com/2014/08/how-to-write-a-text-adventure-in-python-part-2-the-world-space/)

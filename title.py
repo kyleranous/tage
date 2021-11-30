@@ -36,7 +36,9 @@ def drawTitleScreen(errorMSG=None): # Draw the Title Screen
         print(Fore.RED + errorMSG + Fore.RESET)
 
     print("Ready to start your adventure?\n")
+    print(Style.BRIGHT)
     ans = input('> ')
+    print(Style.RESET_ALL)
 
     if ans in yesList:
         clearConsole()

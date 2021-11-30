@@ -27,5 +27,21 @@ I need to find a way to logically parse the input and determine if the the phras
 
  ## Economy
 
- ## Iventory
+ ## Inventory
  Key items from adventures should be made available to use in other adventures. Items should be broken into several catagories, Some that can be used only in an adventure, and some that will stay in the "toy chest" and can be used in other adventures.
+
+## Simple Scripting Language
+ Language Should be able to:
+ * Ask for input
+ * Process simple logic (If this then that)
+ * Create items that can get added to the master item database? or should this need to have a seperate input?
+ * Interface with a Simple map creation scenario
+ * Add stats to the database
+When these functions are called in the script, the engine should run the base function with the information passed from the script.
+
+Functions that will be needed
+ - Player Stat Change
+ - Inventory Management (Add, Remove, Use)
+ - Parse Input
+ - Process Simple Logic (If, Then, Else)
+ 

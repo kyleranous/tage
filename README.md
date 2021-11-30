@@ -6,6 +6,7 @@ A game I am designing for my daughter.
 * [Tech Notes](notes/tech_notes.md)
 
 ## Tasks
+- [ ] Generate a project Roadmap
 - [ ] Create a simple demo of the initial room
 - [ ] Create a more indepth text parser that can interpret affirmitive and negative responses from simple phrases "Yes I am Ready" or "I am not ready"
 - [ ] Write a simple narrative

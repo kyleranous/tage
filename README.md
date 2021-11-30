@@ -6,7 +6,7 @@ A game I am designing for my daughter.
 * [Tech Notes](notes/tech_notes.md)
 
 ## Installation
-Requires Python 3
+Requires Python 3 <br>
 Clone the repo and run
 ```
 pip install -r requirements.txt

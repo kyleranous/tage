@@ -13,6 +13,8 @@ I will also need to come up with a way to create "maps". There was a guy ([javid
 
 There will also need to be a library of stories that can be pulled from. I may ask my wife to start coming up with some....Or maybe enlist the help of someone who is really good at DnD to give me some pointers? 
 
+## 30 NOV 2021
+I would like to devise a simple scripting language so a story could be written in a text editor with calls for inputs, and the ability to add items to the database and parsed by python to run a story. This would allow Chapters to be added to the game without needing to be hard coded in python. I am not entirely sure how this would be done.
 
 ## References
 * [Zork the Great Inner Workings](https://medium.com/swlh/zork-the-great-inner-workings-b68012952bdc) - Analysis of the Zork Text Parser

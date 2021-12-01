@@ -42,7 +42,7 @@ def drawTitleScreen(errorMSG=None): # Draw the Title Screen
 
     if ans in yesList:
         clearConsole()
-        print("THE ADVENTURE BEGINS!")
+        print("Every day we write a new page to our story.")
     elif ans in noList:
         clearConsole()
         print("Tommorow I'll be all the things I tried to be today.")

@@ -1,3 +1,6 @@
+
+# To Do: Figure out the base item classes for use in the scripting language
+
 class Item():
     # The Base Class for All Items
     def __init__(self, name, description, value):

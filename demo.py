@@ -123,6 +123,10 @@ def closet(errorMsg = None):
     act = input('> ')
     print(Style.RESET_ALL + '\n')
 
+    # North -> bookShelf
+    # East -> window
+    # South -> entryWay
+    # West -> Wall
     if act == "go north":
         bookShelf()
     elif act == "go east":
@@ -134,26 +138,117 @@ def closet(errorMsg = None):
         closet(errorMsg = "You can not go into the closet")
     else:
         entryWay(errorMsg = "I'm sorry, I do not understand {}.".format(act))
-    # North -> bookShelf
-    # East -> window
-    # South -> entryWay
-    # West -> Wall
+    
 
+def bookShelf(errorMsg = None):
 
-def bookShelf():
     print("\tYou are standing infront of a book shelf")
 
+    if errorMsg is not None:
+        print(Fore.RED + errorMsg)
+        print(Fore.RESET)
+    
+    print(Style.BRIGHT)
+    act = input('> ')
+    print(Style.RESET_ALL + '\n')
 
-def bed():
+    if act == "go north":
+        bookShelf(errorMsg="There is a wall")
+    elif act == "go east":
+        bed()
+    elif act == "go south":
+        closet()
+    elif act == "go west":
+        bookShelf(errorMsg = "There is a wall")
+    else:
+        bookShelf(errorMsg = "I'm sorry, I do not understand {}.".format(act))
+
+
+def bed(errorMsg = None):
+
     print("\tYou are standing infront of a bed")
 
+    if errorMsg is not None:
+        print(Fore.RED + errorMsg)
+        print(Fore.RESET)
+    
+    print(Style.BRIGHT)
+    act = input('> ')
+    print(Style.RESET_ALL + '\n')
 
-def window():
+    # North -> Wall
+    # East -> Wall
+    # South -> Window
+    # West -> bookShelf
+
+    if act == "go north":
+        bed(errorMsg = "There is a wall")
+    elif act == "go east":
+        bed(errorMsg = "There is a wall")
+    elif act == "go south":
+        window()
+    elif act == "go west":
+        bookShelf()
+    else:
+        bed(errorMsg = "I'm sorry, I do not understand {}.".format(act))
+
+
+def window(errorMsg = None):
+
     print("You are standing infront of a window")
 
+    if errorMsg is not None:
+        print(Fore.RED + errorMsg)
+        print(Fore.RESET)
 
-def tipi():
+    print(Style.BRIGHT)
+    act = input('> ')
+    print(Style.RESET_ALL + '\n')
+
+    # North -> bed
+    # East -> Wall
+    # South -> tipi
+    # West -> closet
+
+    if act == "go north":
+        bed()
+    elif act == "go east":
+        window(errorMsg = "You can not go out the window")
+    elif act == "go south":
+        tipi()
+    elif act == "go west":
+        closet()
+    else:
+        window(errorMsg = "I'm sorry, I do not understand {}.".format(act))
+    
+
+def tipi(errorMsg = None):
+
     print("You are standing infront of a tipi")
+
+    if errorMsg is not None:
+        print(Fore.RED + errorMsg)
+        print(Fore.RESET)
+
+    print(Style.BRIGHT)
+    act = input('> ')
+    print(Style.RESET_ALL + '\n')
+
+    # North -> window
+    # East -> Wall
+    # South -> Wall
+    # West -> entryWay
+
+    if act == "go north":
+        window()
+    elif act == "go east":
+        tipi(errorMsg = "There is a wall")
+    elif act == "go south":
+        tipi(errorMsg = "There is a wall")
+    elif act == "go west":
+        entryWay()
+    else:
+        tipi(errorMsg = "I'm sorry, I do not understand {}.".format(act))
 
 
 def exitGame(errorMsg = None):

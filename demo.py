@@ -2,7 +2,7 @@ import os
 import time
 import sys
 from colorama import Fore, Style
-from map_tiles import MapTile
+from map_tiles import MapTile, StartTile
 
 
 clearConsole = lambda: os.system('cls' if os.name in ('nt', 'dos') else 'clear')
@@ -54,6 +54,8 @@ def drawTitleScreen(errorMSG=None): # Draw the Title Screen
     elif ans in noList:
         clearConsole()
         print("Tommorow I'll be all the things I tried to be today.")
+        time.sleep(3)
+        quit()
     else:
         drawTitleScreen("I'm sorry, I do not understand {}.".format(ans))
 
@@ -98,6 +100,7 @@ def exitGame(errorMsg = None):
     if ans in yesList:
         clearConsole()
         print("Tomorrow I'll be all the things I tried to be today")
+        return 0
     elif ans in noList:
 
       print("TEST")
@@ -110,18 +113,46 @@ def main():
     posX = 0
     posY = 0
     map = []
+    errorMsg = None
     # Map Setup
-    map.append([MapTile(name="Entryway", shortDescription = "You are in the Entryway"),
-                MapTile(name="Closet", shortDescription="You are standing infront of a closet"),
-                MapTile(name="Book Shelf", shortDescription="You are standing infront of a bookshelf")])
+    map.append([StartTile(name="Entryway"),
+                MapTile(name="Closet"),
+                MapTile(name="Book Shelf")])
     
-    map.append([MapTile(name="Tipi", shortDescription="You are standing infront of a canvas tipi"),
-                MapTile(name="Window", shortDescription="You are standing infront of a mirror"),
-                MapTile(name="Bed", shortDescription="You are standing infront of a bed")])
+    map.append([MapTile(name="Tipi"),
+                MapTile(name="Window"),
+                MapTile(name="Bed")])
     
     drawTitleScreen()
 
-    print(map[posX][posY].shortDescription)
+    map[0][0].shortDescription = "You are standing in an Entryway"
+    map[0][1].shortDescription = "You are standing infront of a Closet"
+    map[0][2].shortDescription = "You are standing infront of a Book Shelf"
+    map[1][0].shortDescription = "You are standing infront of a White Canvas Tipi"
+    map[1][1].shortDescription = "You are standing infront of a Window"
+    map[1][2].shortDescription = "You are standing infront of a Bed"
+    
+    while True:
+        # Get Players Tile
+        # Load information
+        print("\t" + map[posX][posY].name + "\n" + map[posX][posY].shortDescription + '\n')
+        if errorMsg is not None:
+            print(Fore.RED + errorMsg + '\n')
+            errorMsg = None
+            print(Fore.RESET)
+
+        print(Style.BRIGHT)
+        ans = input('> ')
+        print(Style.RESET_ALL)
+        
+        # Check Answer
+        #if ans == "go north":
+        #   if pozX + 1 < len(map)
+
+
+
+
+    
 
 
 if __name__ == '__main__':

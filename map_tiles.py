@@ -2,10 +2,10 @@
 
 class MapTile():
     
-    def __init__(self, name, x, y):
+    def __init__(self, name):
         self.name = name
-        self.x = x
-        self.y = y
+        self.shortDescription = ""
+        self.intro = ""
 
     def intro_text(self):
         raise NotImplementedError("Create a subclass of MapTile")
@@ -13,6 +13,13 @@ class MapTile():
     def __str__(self):
         return "Tile: {}\nDescription:{}".format(self.name, self.shortDescription)
 
+class StartTile(MapTile):
+
+    def intro_text(self):
+        return self.intro
+
+    def short_description(self):
+        return self.shortDescription
 
 # Need to have subclasses of Map tiles
 # - StartTile - will be the starting tile on a map

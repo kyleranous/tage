@@ -1,5 +1,13 @@
  # Class for MapTiles
 
+class Map():
+
+    def __init__(self, name):
+        self.name = name
+
+    def __str__(self):
+        return "Map: {}".format(self.name)
+
 class MapTile():
     
     def __init__(self, name):

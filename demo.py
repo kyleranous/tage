@@ -2,11 +2,13 @@ import os
 import time
 import sys
 from colorama import Fore, Style
+from map_tiles import MapTile, StartTile
 
 
 clearConsole = lambda: os.system('cls' if os.name in ('nt', 'dos') else 'clear')
 yesList = ['YEA', 'YES', 'Y', 'Yea', 'Yes', 'yea', 'yes', 'y']
 noList = ['NAH', 'NO', 'N', 'Nah', 'No', 'n', 'nah', 'no']
+
 
 def drawTitleScreen(errorMSG=None): # Draw the Title Screen
     clearConsole()
@@ -47,12 +49,13 @@ def drawTitleScreen(errorMSG=None): # Draw the Title Screen
         clearConsole()
         print("Every day we write a new page to our story.")
         time.sleep(3)
-        # Call the room function
         mapIntro()
         
     elif ans in noList:
         clearConsole()
         print("Tommorow I'll be all the things I tried to be today.")
+        time.sleep(3)
+        quit()
     else:
         drawTitleScreen("I'm sorry, I do not understand {}.".format(ans))
 
@@ -80,175 +83,6 @@ def mapIntro():
     print( """\tINTRODUCTION TEXT TO ROOM
     """)
     print('\n')
-    entryWay()
-
-
-def entryWay(errorMsg=None):
-    
-    print("\tYou are in the entry way.\n")
-    if errorMsg is not None:
-        print(Fore.RED + errorMsg)
-        print(Fore.RESET)
-
-    print(Style.BRIGHT)
-    act = input('> ')
-    print(Style.RESET_ALL)
-    
-    # North -> closet
-    # East -> tipi
-    # South -> Wall
-    # West -> exitGame
-
-    if act == "go north":
-        closet()
-    elif act == "go east":
-        tipi()
-    elif act == "go south":
-        #clearConsole()
-        entryWay(errorMsg="There is a wall")
-    elif act == "go west":
-        exitGame()
-    else:
-        entryWay(errorMsg = "I'm sorry, I do not understand {}.".format(act))
-
-
-def closet(errorMsg = None):
-    
-    print("\tYou are standing infront of the closet.\n")
-    if errorMsg is not None:
-        print(Fore.RED + errorMsg)
-        print(Fore.RESET)
-    
-    print(Style.BRIGHT)
-    act = input('> ')
-    print(Style.RESET_ALL + '\n')
-
-    # North -> bookShelf
-    # East -> window
-    # South -> entryWay
-    # West -> Wall
-    if act == "go north":
-        bookShelf()
-    elif act == "go east":
-        window()
-    elif act == "go south":
-        #clearConsole()
-        entryWay()
-    elif act == "go west":
-        closet(errorMsg = "You can not go into the closet")
-    else:
-        entryWay(errorMsg = "I'm sorry, I do not understand {}.".format(act))
-    
-
-def bookShelf(errorMsg = None):
-
-    print("\tYou are standing infront of a book shelf")
-
-    if errorMsg is not None:
-        print(Fore.RED + errorMsg)
-        print(Fore.RESET)
-    
-    print(Style.BRIGHT)
-    act = input('> ')
-    print(Style.RESET_ALL + '\n')
-
-    if act == "go north":
-        bookShelf(errorMsg="There is a wall")
-    elif act == "go east":
-        bed()
-    elif act == "go south":
-        closet()
-    elif act == "go west":
-        bookShelf(errorMsg = "There is a wall")
-    else:
-        bookShelf(errorMsg = "I'm sorry, I do not understand {}.".format(act))
-
-
-def bed(errorMsg = None):
-
-    print("\tYou are standing infront of a bed")
-
-    if errorMsg is not None:
-        print(Fore.RED + errorMsg)
-        print(Fore.RESET)
-    
-    print(Style.BRIGHT)
-    act = input('> ')
-    print(Style.RESET_ALL + '\n')
-
-    # North -> Wall
-    # East -> Wall
-    # South -> Window
-    # West -> bookShelf
-
-    if act == "go north":
-        bed(errorMsg = "There is a wall")
-    elif act == "go east":
-        bed(errorMsg = "There is a wall")
-    elif act == "go south":
-        window()
-    elif act == "go west":
-        bookShelf()
-    else:
-        bed(errorMsg = "I'm sorry, I do not understand {}.".format(act))
-
-
-def window(errorMsg = None):
-
-    print("You are standing infront of a window")
-
-    if errorMsg is not None:
-        print(Fore.RED + errorMsg)
-        print(Fore.RESET)
-
-    print(Style.BRIGHT)
-    act = input('> ')
-    print(Style.RESET_ALL + '\n')
-
-    # North -> bed
-    # East -> Wall
-    # South -> tipi
-    # West -> closet
-
-    if act == "go north":
-        bed()
-    elif act == "go east":
-        window(errorMsg = "You can not go out the window")
-    elif act == "go south":
-        tipi()
-    elif act == "go west":
-        closet()
-    else:
-        window(errorMsg = "I'm sorry, I do not understand {}.".format(act))
-    
-
-def tipi(errorMsg = None):
-
-    print("You are standing infront of a tipi")
-
-    if errorMsg is not None:
-        print(Fore.RED + errorMsg)
-        print(Fore.RESET)
-
-    print(Style.BRIGHT)
-    act = input('> ')
-    print(Style.RESET_ALL + '\n')
-
-    # North -> window
-    # East -> Wall
-    # South -> Wall
-    # West -> entryWay
-
-    if act == "go north":
-        window()
-    elif act == "go east":
-        tipi(errorMsg = "There is a wall")
-    elif act == "go south":
-        tipi(errorMsg = "There is a wall")
-    elif act == "go west":
-        entryWay()
-    else:
-        tipi(errorMsg = "I'm sorry, I do not understand {}.".format(act))
 
 
 def exitGame(errorMsg = None):
@@ -266,11 +100,88 @@ def exitGame(errorMsg = None):
     if ans in yesList:
         clearConsole()
         print("Tomorrow I'll be all the things I tried to be today")
+        return 0
     elif ans in noList:
-        entryWay()
+
+      print("TEST")
     else:
         exitGame(errorMsg = "I'm sorry, I do not understand {}.".format(ans))
 
+        
+def main():
+    #Setup Variables
+    posX = 0
+    posY = 0
+    map = []
+    errorMsg = None
+    # Map Setup
+    map.append([StartTile(name="Entryway"),
+                MapTile(name="Closet"),
+                MapTile(name="Book Shelf")])
+    
+    map.append([MapTile(name="Tipi"),
+                MapTile(name="Window"),
+                MapTile(name="Bed")])
+    
+    drawTitleScreen()
+
+    map[0][0].shortDescription = "You are standing in an Entryway"
+    map[0][1].shortDescription = "You are standing infront of a Closet"
+    map[0][2].shortDescription = "You are standing infront of a Book Shelf"
+    map[1][0].shortDescription = "You are standing infront of a White Canvas Tipi"
+    map[1][1].shortDescription = "You are standing infront of a Window"
+    map[1][2].shortDescription = "You are standing infront of a Bed"
+    
+    while True:
+        # Load information
+        print("\t" + map[posX][posY].name + "\n" + map[posX][posY].shortDescription + '\n')
+        if errorMsg is not None:
+            print(Fore.RED + errorMsg + '\n')
+            errorMsg = None
+            print(Fore.RESET)
+
+        print(Style.BRIGHT)
+        ans = input('> ')
+        print(Style.RESET_ALL)
+        
+        # Check Answer
+        if ans == "go north":
+
+            if posY + 1 < len(map[posX]):
+               posY = posY + 1
+
+            else:
+                errorMsg = "You can not go that way"
+
+        elif ans == "go south":
+
+            if posY >= 1:
+                posY = posY - 1
+
+            else:
+                errorMsg = "You can not go that way"
+
+        elif ans == "go east":
+
+            if posX + 1 < len(map):
+                posX = posX + 1
+
+            else:
+                errorMsg = "You can not go that way"
+
+        elif ans == "go west":
+
+            if posX >= 1:
+                posX = posX - 1
+
+            else:
+                errorMsg = "You can not got that way"
+
+        else:
+            # Check to see if there is a special command for the tile
+            # if ans is not equal to a special tile command then return an error
+            errorMsg = "I'm sorry, I do not understand {}".format(ans)
+
 
 if __name__ == '__main__':
-    drawTitleScreen()
+   main()

@@ -1,4 +1,5 @@
-# Eleanor's Adventure
+# TBAGE
+**Text Based Adventure Game Engine**
 
 A game I am designing for my daughter.
 

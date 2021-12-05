@@ -1,6 +1,3 @@
-'''
-Eleanor's Adventure Demo game for TABGE
-'''
 import os
 import time
 from colorama import Fore, Style
@@ -12,10 +9,7 @@ yesList = ['YEA', 'YES', 'Y', 'Yea', 'Yes', 'yea', 'yes', 'y']
 noList = ['NAH', 'NO', 'N', 'Nah', 'No', 'n', 'nah', 'no']
 
 
-def draw_title_screen(errorMSG=None): # Draw the Title Screen
-    '''
-        Draws the game title screen
-    '''
+def draw_title_screen(errorMSG=None):  # Draw the Title Screen
     clearConsole()
     print(Fore.GREEN + Style.BRIGHT)
     print("     /########  /##        /########   /######   /##   /##   /######   /#######   /##  /######")
@@ -62,7 +56,7 @@ def draw_title_screen(errorMSG=None): # Draw the Title Screen
         time.sleep(3)
         quit()
     else:
-        draw_title_screen("I'm sorry, I do not understand {}.".format(ans))
+        draw_title_screen(f"I'm sorry, I do not understand {ans}.")
 
 
 # Room Layout
@@ -110,7 +104,7 @@ def exit_game(errorMsg = None):
 
         print("TEST")
     else:
-        exit_game(errorMsg = "I'm sorry, I do not understand {}.".format(ans))
+        exit_game(errorMsg = f"I'm sorry, I do not understand {ans}.")
 
 
 def main():
@@ -185,7 +179,7 @@ def main():
         else:
             # Check to see if there is a special command for the tile
             # if ans is not equal to a special tile command then return an error
-            errorMsg = "I'm sorry, I do not understand {}".format(ans)
+            errorMsg = f"I'm sorry, I do not understand {ans}"
 
 
 if __name__ == '__main__':

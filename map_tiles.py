@@ -8,8 +8,9 @@ class Map():
     def __str__(self):
         return "Map: {}".format(self.name)
 
+
 class MapTile():
-    
+    # Base MapTile Class - Defines the minimum items necessary to create a map tile and the minimum functions needed for them
     def __init__(self, name):
         self.name = name
         self.shortDescription = ""
@@ -21,6 +22,7 @@ class MapTile():
     def __str__(self):
         return "Tile: {}\nDescription:{}".format(self.name, self.shortDescription)
 
+
 class StartTile(MapTile):
 
     def intro_text(self):
@@ -28,6 +30,7 @@ class StartTile(MapTile):
 
     def short_description(self):
         return self.shortDescription
+
 
 # Need to have subclasses of Map tiles
 # - StartTile - will be the starting tile on a map

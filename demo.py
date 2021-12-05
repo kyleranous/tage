@@ -133,7 +133,6 @@ def main():
     map[1][2].shortDescription = "You are standing infront of a Bed"
     
     while True:
-        # Get Players Tile
         # Load information
         print("\t" + map[posX][posY].name + "\n" + map[posX][posY].shortDescription + '\n')
         if errorMsg is not None:
@@ -146,13 +145,42 @@ def main():
         print(Style.RESET_ALL)
         
         # Check Answer
-        #if ans == "go north":
-        #   if pozX + 1 < len(map)
+        if ans == "go north":
 
+            if posY + 1 < len(map[posX]):
+               posY = posY + 1
 
+            else:
+                errorMsg = "You can not go that way"
 
+        elif ans == "go south":
 
-    
+            if posY >= 1:
+                posY = posY - 1
+
+            else:
+                errorMsg = "You can not go that way"
+
+        elif ans == "go east":
+
+            if posX + 1 < len(map):
+                posX = posX + 1
+
+            else:
+                errorMsg = "You can not go that way"
+
+        elif ans == "go west":
+
+            if posX >= 1:
+                posX = posX - 1
+
+            else:
+                errorMsg = "You can not got that way"
+
+        else:
+            # Check to see if there is a special command for the tile
+            # if ans is not equal to a special tile command then return an error
+            errorMsg = "I'm sorry, I do not understand {}".format(ans)
 
 
 if __name__ == '__main__':

@@ -1,6 +1,8 @@
+'''
+Eleanor's Adventure Demo game for TABGE
+'''
 import os
 import time
-import sys
 from colorama import Fore, Style
 from map_tiles import MapTile, StartTile
 
@@ -10,7 +12,10 @@ yesList = ['YEA', 'YES', 'Y', 'Yea', 'Yes', 'yea', 'yes', 'y']
 noList = ['NAH', 'NO', 'N', 'Nah', 'No', 'n', 'nah', 'no']
 
 
-def drawTitleScreen(errorMSG=None): # Draw the Title Screen
+def draw_title_screen(errorMSG=None): # Draw the Title Screen
+    '''
+        Draws the game title screen
+    '''
     clearConsole()
     print(Fore.GREEN + Style.BRIGHT)
     print("     /########  /##        /########   /######   /##   /##   /######   /#######   /##  /######")
@@ -49,15 +54,15 @@ def drawTitleScreen(errorMSG=None): # Draw the Title Screen
         clearConsole()
         print("Every day we write a new page to our story.")
         time.sleep(3)
-        mapIntro()
-        
+        map_intro()
+
     elif ans in noList:
         clearConsole()
         print("Tommorow I'll be all the things I tried to be today.")
         time.sleep(3)
         quit()
     else:
-        drawTitleScreen("I'm sorry, I do not understand {}.".format(ans))
+        draw_title_screen("I'm sorry, I do not understand {}.".format(ans))
 
 
 # Room Layout
@@ -71,22 +76,22 @@ def drawTitleScreen(errorMSG=None): # Draw the Title Screen
 #     |   closet   |   window   |    W---+---E
 #     |            |            |        |
 #     |            |            |        S
-#     |------------+------------| 
+#     |------------+------------|
 #     |            |            |
 #     |  entryWay  |    tipi    |
 #     |            |            |
-#     |____________|____________|         
+#     |____________|____________|
 
-def mapIntro():
-    
+def map_intro():
+
     clearConsole()
     print( """\tINTRODUCTION TEXT TO ROOM
     """)
     print('\n')
 
 
-def exitGame(errorMsg = None):
-    
+def exit_game(errorMsg = None):
+
     if errorMsg is not None:
         print(Fore.RED + errorMsg)
         print(Fore.RESET)
@@ -103,38 +108,38 @@ def exitGame(errorMsg = None):
         return 0
     elif ans in noList:
 
-      print("TEST")
+        print("TEST")
     else:
-        exitGame(errorMsg = "I'm sorry, I do not understand {}.".format(ans))
+        exit_game(errorMsg = "I'm sorry, I do not understand {}.".format(ans))
 
-        
+
 def main():
     #Setup Variables
     posX = 0
     posY = 0
-    map = []
+    mapMat = []
     errorMsg = None
     # Map Setup
-    map.append([StartTile(name="Entryway"),
+    mapMat.append([StartTile(name="Entryway"),
                 MapTile(name="Closet"),
                 MapTile(name="Book Shelf")])
-    
-    map.append([MapTile(name="Tipi"),
+
+    mapMat.append([MapTile(name="Tipi"),
                 MapTile(name="Window"),
                 MapTile(name="Bed")])
-    
-    drawTitleScreen()
 
-    map[0][0].shortDescription = "You are standing in an Entryway"
-    map[0][1].shortDescription = "You are standing infront of a Closet"
-    map[0][2].shortDescription = "You are standing infront of a Book Shelf"
-    map[1][0].shortDescription = "You are standing infront of a White Canvas Tipi"
-    map[1][1].shortDescription = "You are standing infront of a Window"
-    map[1][2].shortDescription = "You are standing infront of a Bed"
-    
+    draw_title_screen()
+
+    mapMat[0][0].shortDescription = "You are standing in an Entryway"
+    mapMat[0][1].shortDescription = "You are standing infront of a Closet"
+    mapMat[0][2].shortDescription = "You are standing infront of a Book Shelf"
+    mapMat[1][0].shortDescription = "You are standing infront of a White Canvas Tipi"
+    mapMat[1][1].shortDescription = "You are standing infront of a Window"
+    mapMat[1][2].shortDescription = "You are standing infront of a Bed"
+
     while True:
         # Load information
-        print("\t" + map[posX][posY].name + "\n" + map[posX][posY].shortDescription + '\n')
+        print("\t" + mapMat[posX][posY].name + "\n" + mapMat[posX][posY].shortDescription + '\n')
         if errorMsg is not None:
             print(Fore.RED + errorMsg + '\n')
             errorMsg = None
@@ -143,12 +148,12 @@ def main():
         print(Style.BRIGHT)
         ans = input('> ')
         print(Style.RESET_ALL)
-        
+
         # Check Answer
         if ans == "go north":
 
-            if posY + 1 < len(map[posX]):
-               posY = posY + 1
+            if posY + 1 < len(mapMat[posX]):
+                posY = posY + 1
 
             else:
                 errorMsg = "You can not go that way"
@@ -184,4 +189,4 @@ def main():
 
 
 if __name__ == '__main__':
-   main()
+    main()

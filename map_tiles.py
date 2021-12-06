@@ -15,16 +15,23 @@ class MapTile():
         self.name = name
         self.shortDescription = ""
         self.intro = ""
+        self.tile_inspect = {}
 
     def intro_text(self):
         raise NotImplementedError("Create a subclass of MapTile")
 
     def __str__(self):
         return "Tile: {}\nDescription:{}".format(self.name, self.shortDescription)
+    
+    def inspect_list(self):
+        if len(self.tile_inspect) > 0:
+            return True
+        else:
+            return False
 
 
 class StartTile(MapTile):
-
+    
     def intro_text(self):
         return self.intro
 

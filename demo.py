@@ -3,8 +3,12 @@ import time
 from colorama import Fore, Style
 from map_tiles import MapTile, StartTile
 
-
+# ToDo: Move clearConsole to a general utilities module
+# ToDo: Fix Function Name from clearConsole to clear_console
 clearConsole = lambda: os.system('cls' if os.name in ('nt', 'dos') else 'clear')
+
+# ToDo: Move yesList and noList to text_parser module
+# ToDo: fix yesList and noList variable names to YES_LIST and NO_LIST
 yesList = ['YEA', 'YES', 'Y', 'Yea', 'Yes', 'yea', 'yes', 'y']
 noList = ['NAH', 'NO', 'N', 'Nah', 'No', 'n', 'nah', 'no']
 
@@ -44,15 +48,15 @@ def draw_title_screen(errorMSG=None):  # Draw the Title Screen
     ans = input('> ')
     print(Style.RESET_ALL)
 
-    if ans in yesList:
+    if ans.lower() in yesList:
         clearConsole()
         print("Every day we write a new page to our story.")
         time.sleep(3)
         map_intro()
 
-    elif ans in noList:
+    elif ans.lower() in noList or ans.lower() == "quit":
         clearConsole()
-        print("Tommorow I'll be all the things I tried to be today.")
+        print("Goodbye!")
         time.sleep(3)
         quit()
     else:
@@ -76,11 +80,11 @@ def draw_title_screen(errorMSG=None):  # Draw the Title Screen
 #     |            |            |
 #     |____________|____________|
 
-def map_intro():
+
+def map_intro():  # map_intro should be a function of the GameMap class
 
     clearConsole()
-    print( """\tINTRODUCTION TEXT TO ROOM
-    """)
+    print( """\tINTRODUCTION TEXT TO MAP""")
     print('\n')
 
 
@@ -96,13 +100,20 @@ def exit_game(errorMsg = None):
     ans = input('> ')
     print(Style.RESET_ALL)
 
-    if ans in yesList:
+    if ans.lower() in yesList:
         clearConsole()
+        # Reset any special console text formatting
+        print(Fore.RESET + Style.RESET_ALL)
+        # Print Exit Message
         print("Tomorrow I'll be all the things I tried to be today")
-        return 0
-    elif ans in noList:
+        # Wait for 3 Seconds then load the title screen
+        time.sleep(3)
+        draw_title_screen()
+        
+    elif ans.lower() in noList:
 
-        print("TEST")
+        return
+
     else:
         exit_game(errorMsg = f"I'm sorry, I do not understand {ans}.")
 
@@ -144,7 +155,7 @@ def main():
         print(Style.RESET_ALL)
 
         # Check Answer
-        if ans == "go north":
+        if ans.lower() == "go north":
 
             if posY + 1 < len(mapMat[posX]):
                 posY = posY + 1
@@ -152,7 +163,7 @@ def main():
             else:
                 errorMsg = "You can not go that way"
 
-        elif ans == "go south":
+        elif ans.lower() == "go south":
 
             if posY >= 1:
                 posY = posY - 1
@@ -160,7 +171,7 @@ def main():
             else:
                 errorMsg = "You can not go that way"
 
-        elif ans == "go east":
+        elif ans.lower() == "go east":
 
             if posX + 1 < len(map):
                 posX = posX + 1
@@ -168,10 +179,14 @@ def main():
             else:
                 errorMsg = "You can not go that way"
 
-        elif ans == "go west":
+        elif ans.lower() == "go west":
 
             if posX >= 1:
                 posX = posX - 1
+
+            elif posX == 0 and posY == 0:
+                # Use this as an exit title
+                exit_game()
 
             else:
                 errorMsg = "You can not got that way"

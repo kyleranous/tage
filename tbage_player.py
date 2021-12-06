@@ -1,5 +1,5 @@
  
-class Player():
+class Player:
     
     def __init__(self, name):
         self.name = name
@@ -15,19 +15,14 @@ class Player():
         ''' Adjusts players inventory, adds item if qty is positive and item does
             not currently exists in inventroy, adjusts quantity if item already exists
         '''
-        if itemKey in self.inventory.keys():
-            # Check if inventory adjustment will lead to a negative number
-            self.inventory[itemKey] = self.inventory[itemKey] + qty
-            
-            if self.inventory[itemKey] <= 0: # Remove item if quantity is less then or equal to 0
-                del(self.inventory[itemKey])
-            
-            return 1
-        
-        else:
-            if qty <= 0:
-                return 0
-            else:
-                self.inventory[itemKey] = qty
-                return 1
+        # Check if item exists in inventory
+            # If it does, check if adjustment takes value out of bounds (<0)
+                # If adjustment is good, make adjustment
+                # If quantity is now zero remove item from inventory
+                # Return success
+            # If value takes item out of bounds (<0)
+                # Make no adjustments return error
+        # If item does not exist in inventory Add Item to Inventory
+            # Return Success
+
 

@@ -1,7 +1,7 @@
 import os
 import time
 from colorama import Fore, Style
-from map_tiles import MapTile, StartTile
+from tabge_map import MapTile, StartTile
 
 # ToDo: Move clearConsole to a general utilities module
 # ToDo: Fix Function Name from clearConsole to clear_console

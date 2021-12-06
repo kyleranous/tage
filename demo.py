@@ -136,11 +136,11 @@ def main():
     draw_title_screen()
 
     mapMat[0][0].shortDescription = "You are standing in an Entryway"
-    mapMat[0][1].shortDescription = "You are standing infront of a Closet"
-    mapMat[0][2].shortDescription = "You are standing infront of a Book Shelf"
-    mapMat[1][0].shortDescription = "You are standing infront of a White Canvas Tipi"
-    mapMat[1][1].shortDescription = "You are standing infront of a Window"
-    mapMat[1][2].shortDescription = "You are standing infront of a Bed"
+    mapMat[0][1].shortDescription = "You are standing in front of a Closet"
+    mapMat[0][2].shortDescription = "You are standing in front of a Book Shelf"
+    mapMat[1][0].shortDescription = "You are standing in front of a White Canvas Tipi"
+    mapMat[1][1].shortDescription = "You are standing in front of a Window"
+    mapMat[1][2].shortDescription = "You are standing in front of a Bed"
 
     while True:
         # Load information
@@ -173,7 +173,7 @@ def main():
 
         elif ans.lower() == "go east":
 
-            if posX + 1 < len(map):
+            if posX + 1 < len(mapMat):
                 posX = posX + 1
 
             else:
@@ -185,7 +185,7 @@ def main():
                 posX = posX - 1
 
             elif posX == 0 and posY == 0:
-                # Use this as an exit title
+                # Use this as an exit tile
                 exit_game()
 
             else:

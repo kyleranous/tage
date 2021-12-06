@@ -11,6 +11,7 @@ clearConsole = lambda: os.system('cls' if os.name in ('nt', 'dos') else 'clear')
 # ToDo: fix yesList and noList variable names to YES_LIST and NO_LIST
 yesList = ['YEA', 'YES', 'Y', 'Yea', 'Yes', 'yea', 'yes', 'y']
 noList = ['NAH', 'NO', 'N', 'Nah', 'No', 'n', 'nah', 'no']
+INSPECT_LIST = ['inspect', 'look']
 
 
 def draw_title_screen(errorMSG=None):  # Draw the Title Screen
@@ -124,6 +125,8 @@ def main():
     posY = 0
     mapMat = []
     errorMsg = None
+    specialMsg = None
+
     # Map Setup
     mapMat.append([StartTile(name="Entryway"),
                 MapTile(name="Closet"),
@@ -142,9 +145,36 @@ def main():
     mapMat[1][1].shortDescription = "You are standing in front of a Window"
     mapMat[1][2].shortDescription = "You are standing in front of a Bed"
 
-    while True:
+
+    # Create Special  tile commands
+    mapMat[1][2].tile_inspect = {  # Inspection for bed tile
+        "bed" : "The bed is full of stuffed animals.",
+        "Stuffed Animals" : "There is a Unicorn and a purple lama"
+    }
+
+    mapMat[1][1].tile_inspect = {  # Inspection for window tile
+        "window" : "There are horses playing in a stable and a distant mountain range."
+    }
+
+    mapMat[0][1].tile_inspect = {  # Inspection for Closet tile
+        "closet" : "The closet is empty, but might be a good place to store things."
+    }
+
+    mapMat[0][2].tile_inspect = {  # Inspection for book shelf tile
+        "shelf" : "The Book Shelf has lots of room for books, think of all the adventures that would be!"
+    }
+
+    mapMat[1][0].tile_inspect = { # Inspection for tipi tile
+        "tipi" : "The tipi has blankets and pillows on the floor, looks like a comfy place to read."
+    }
+    while True: # Active Game Loop
         # Load information
         print("\t" + mapMat[posX][posY].name + "\n" + mapMat[posX][posY].shortDescription + '\n')
+        
+        if specialMsg is not None:  # If the tile has a Special Message, print it
+            print(specialMsg + '\n')
+            specialMsg = None
+
         if errorMsg is not None:
             print(Fore.RED + errorMsg + '\n')
             errorMsg = None
@@ -191,9 +221,18 @@ def main():
             else:
                 errorMsg = "You can not got that way"
 
+        elif ans.split()[0].lower() in INSPECT_LIST:
+            # Check to see if there are special inspect items in the current map tile
+            if mapMat[posX][posY].inspect_list():
+                # Check to see if the item being called is in the map tiles inspect list
+                if ans.split()[-1].lower() in mapMat[posX][posY].tile_inspect.keys():
+                    # Return to the Tile with a special message
+                    specialMsg = mapMat[posX][posY].tile_inspect[ans.split()[-1].lower()]
+                else:
+                    errorMsg = f"I'm sorry, I do not understand {ans}"
+            else:# if ans is not equal to a special tile command then return an error
+                errorMsg = f"I'm sorry, I do not understand {ans}"
         else:
-            # Check to see if there is a special command for the tile
-            # if ans is not equal to a special tile command then return an error
             errorMsg = f"I'm sorry, I do not understand {ans}"
 
 

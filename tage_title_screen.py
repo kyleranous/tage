@@ -66,16 +66,16 @@ class TitleScreen():
 
             if len(self.bannerText) > 0:
                 for x in range(1, self.width):
-                    print('#', end='', flush=True)
+                    print('*', end='', flush=True)
 
                 print('\r')
 
                 for i in range(0,len(self.bannerText)):
-                    self.bannerText[i] = "#" + (" " * int(((self.width - len(self.bannerText[i]))/2)-1)) + self.bannerText[i] + (" " * int(((self.width - len(self.bannerText[i]))/2)-2)) + "#"
+                    self.bannerText[i] = "*" + (" " * int(((self.width - len(self.bannerText[i]))/2)-1)) + self.bannerText[i] + (" " * int(((self.width - len(self.bannerText[i]))/2)-2)) + "*"
                     print(self.bannerText[i])
 
                 for x in range(1, self.width):
-                    print('#', end='', flush=True)
+                    print('*', end='', flush=True)
 
             # Reset Banner Color Selection
             print(Fore.RESET)

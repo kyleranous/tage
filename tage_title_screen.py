@@ -12,6 +12,7 @@ class TitleScreen():
         self.bannerText = []
         self.bannerColor = None
         self.caption = None
+        self.menu = []
     
     def add_title_line(self, title):
         self.title.append(title)
@@ -19,7 +20,12 @@ class TitleScreen():
     def add_banner_line(self, bannerText):
         self.bannerText.append(bannerText)
 
-    def draw_title_screen(self):
+    def add_menu_item(self, menuItem):
+        self.menu.append(menuItem)
+
+    def render_title(self):
+        ''' Draws the Stylized Title '''
+
         if len(self.title) > 0:
             for t in self.title:
                 t = pyfiglet.figlet_format(t, font=self.titleFont, width=self.width, justify="center")
@@ -43,13 +49,11 @@ class TitleScreen():
                         raise ValueError(f"{self.color} is not a valid color selection")
             
                 # Reset Title Color Selection
-                print(t + Fore.RESET + "\033[F\033[F")
+                print(t + Fore.RESET + "\033[F\033[F\033[F")
 
-            # Print Caption if there is one
-            if self.caption is not None:
-                print(self.caption)
+    def render_banner(self):
 
-            # Set Banner Color if there is one
+        # Set Banner Color if there is one
             if self.bannerColor is not None:
                 if self.bannerColor.lower() == "blue":
                     print(Fore.BLUE, end='', flush=True)
@@ -84,18 +88,32 @@ class TitleScreen():
             # Reset Banner Color Selection
             print(Fore.RESET)
 
+    def render_menu(self):
+        pass
+
+    def render_title_screen(self):
+            
+            self.render_title()
+            
+            # Print Caption if there is one
+            if self.caption is not None:
+                print("\n" + self.caption)
+
+            self.render_banner()
+
 def main():
 
     testScreen = TitleScreen(title="E L E A N O R ' S")
+    #testScreen = TitleScreen(title="")
     testScreen.add_title_line("A D V E N T U R E")
     testScreen.color = "green"
     testScreen.caption = "Version 0.1a"
     testScreen.width = 100
-    #testScreen.titleFont = "doom"
+    testScreen.titleFont = "doom"
     testScreen.add_banner_line("TEST")
     testScreen.add_banner_line("Test 2")
     testScreen.bannerColor = "blue"
-    testScreen.draw_title_screen()
+    testScreen.render_title_screen()
 
 
 if __name__ == '__main__':

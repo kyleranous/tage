@@ -13,15 +13,19 @@ class TitleScreen():
         self.bannerColor = None
         self.caption = None
         self.menu = []
-    
+ 
+   
     def add_title_line(self, title):
         self.title.append(title)
+
 
     def add_banner_line(self, bannerText):
         self.bannerText.append(bannerText)
 
+
     def add_menu_item(self, menuItem):
         self.menu.append(menuItem)
+
 
     def render_title(self):
         ''' Draws the Stylized Title '''
@@ -50,6 +54,7 @@ class TitleScreen():
             
                 # Reset Title Color Selection
                 print(t + Fore.RESET + "\033[F\033[F\033[F")
+
 
     def render_banner(self):
 
@@ -88,8 +93,10 @@ class TitleScreen():
             # Reset Banner Color Selection
             print(Fore.RESET)
 
+
     def render_menu(self):
         pass
+
 
     def render_title_screen(self):
             

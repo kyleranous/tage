@@ -13,7 +13,7 @@ class TitleScreen():
         self.bannerColor = None
         self.caption = None
         self.menu = []
- 
+        self.menu_col = 3
    
     def add_title_line(self, title):
         self.title.append(title)
@@ -24,7 +24,15 @@ class TitleScreen():
 
 
     def add_menu_item(self, menuItem):
-        self.menu.append(menuItem)
+        
+        if type(menuItem) is list:
+            self.menu = self.menu + menuItem
+        
+        elif type(menuItem) is str:
+            self.menu.append(menuItem)
+
+        else:
+            raise ValueError("Menu Items must be a String or List of Strings")
 
 
     def render_title(self):
@@ -95,7 +103,30 @@ class TitleScreen():
 
 
     def render_menu(self):
-        pass
+        
+        if len(self.menu) > 0:
+            menuNum = 1
+            tempMenu = self.menu
+            tempStr = ""
+            spacing = int(self.width / self.menu_col)
+    
+            while len(tempMenu) > 0:
+
+                i = 0
+                renderStr = ""
+                while i < self.menu_col:
+
+                    if len(tempMenu) > 0:
+                        tempStr = tempMenu.pop(0)
+                        spacingModifier = len(tempStr) + len(str(menuNum)) + 3
+                        renderStr = renderStr + str(menuNum) + " - " + tempStr + (" " * (spacing - spacingModifier))
+                        menuNum += 1
+                    else:
+                        break
+                    i += 1
+            
+                print(renderStr)
+            
 
 
     def render_title_screen(self):
@@ -107,6 +138,8 @@ class TitleScreen():
                 print("\n" + self.caption)
 
             self.render_banner()
+            
+            self.render_menu()
 
 def main():
 
@@ -120,6 +153,7 @@ def main():
     testScreen.add_banner_line("TEST")
     testScreen.add_banner_line("Test 2")
     testScreen.bannerColor = "blue"
+    testScreen.add_menu_item(["Test01", "Test002", "Test0003", "Test00004", "Test000005", "Test0000006"])
     testScreen.render_title_screen()
 
 

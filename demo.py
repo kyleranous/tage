@@ -2,6 +2,7 @@ import os
 import time
 from colorama import Fore, Style
 from tage_map import MapTile, StartTile
+import tage_title_screen
 
 # ToDo: Move clearConsole to a general utilities module
 # ToDo: Fix Function Name from clearConsole to clear_console
@@ -15,32 +16,18 @@ INSPECT_LIST = ['inspect', 'look']
 
 
 def draw_title_screen(errorMSG=None):  # Draw the Title Screen
+    
     clearConsole()
-    print(Fore.GREEN + Style.BRIGHT)
-    print("     /########  /##        /########   /######   /##   /##   /######   /#######   /##  /######")
-    print("    | ##_____/ | ##       | ##_____/  /##__  ## | ### | ##  /##__  ## | ##__  ## | #/ /##__  ##")
-    print("    | ##       | ##       | ##       | ##  \ ## | ####| ## | ##  \ ## | ##  \ ## |_/ | ##  \__/")
-    print("    | #####    | ##       | #####    | ######## | ## ## ## | ##  | ## | #######/     |  ######")
-    print("    | ##__/    | ##       | ##__/    | ##__  ## | ##  #### | ##  | ## | ##__  ##      \____  ##")
-    print("    | ##       | ##       | ##       | ##  | ## | ##\  ### | ##  | ## | ##  \ ##      /##  \ ##")
-    print("    | ######## | ######## | ######## | ##  | ## | ## \  ## |  ######/ | ##  | ##     |  ######/")
-    print("    |________/ |________/ |________/ |__/  |__/ |__/  \__/  \______/  |__/  |__/      \______/")
-    print("\n")
-    print("  /######   /#######   /##    /##  /########  /##   /##  /########  /##   /##  /#######   /########")
-    print(" /##__  ## | ##__  ## | ##   | ## | ##_____/ | ### | ## |__  ##__/ | ##  | ## | ##__  ## | ##_____/")
-    print("| ##  \ ## | ##  \ ## | ##   | ## | ##       | ####| ##    | ##    | ##  | ## | ##  \ ## | ##")
-    print("| ######## | ##  | ## |  ## / ##/ | #####    | ## ## ##    | ##    | ##  | ## | #######/ | #####")
-    print("| ##__  ## | ##  | ##  \  ## ##/  | ##__/    | ##  ####    | ##    | ##  | ## | ##__  ## | ##__/")
-    print("| ##  | ## | ##  | ##   \  ###/   | ##       | ##\  ###    | ##    | ##  | ## | ##  \ ## | ##")
-    print("| ##  | ## | #######/    \  #/    | ######## | ## \  ##    | ##    |  ######/ | ##  | ## | ########")
-    print("|__/  |__/ |_______/      \_/     |________/ |__/  \__/    |__/     \______/  |__/  |__/ |________/")
-    print(Fore.RESET + Style.NORMAL + "\nVersion: 0.1a")
-    print(Fore.BLUE + Style.BRIGHT)
-    print("***************************************************************************************************")
-    print("*                                             SOMETHING                                           *")
-    print("*                                           INSPERATIONAL                                         *")
-    print("***************************************************************************************************")
-    print(Fore.RESET + Style.RESET_ALL)
+    
+    # Create Title Screen
+    t = tage_title_screen.TitleScreen("E L E A N O R ' S\nA D V E N T U R E")
+    t.color = "green"
+    t.caption = "Version 0.1alpha"
+    t.add_banner_line("PLACEHOLDER")
+    t.add_banner_line("TEXT")
+    t.bannerColor = "blue"
+    t.render_title_screen()
+
     if errorMSG is not None:
         print(Fore.RED + errorMSG + Fore.RESET)
 

@@ -141,21 +141,21 @@ class TitleScreen():
             
             self.render_menu()
 
-def main():
+def demo():
 
-    testScreen = TitleScreen(title="E L E A N O R ' S")
+    testScreen = TitleScreen(title="G A M E")
     #testScreen = TitleScreen(title="")
-    testScreen.add_title_line("A D V E N T U R E")
+    testScreen.add_title_line("T I T L E")
     testScreen.color = "green"
-    testScreen.caption = "Version 0.1a"
+    testScreen.caption = "Version 0.1alpha(DEMO)"
     testScreen.width = 100
-    testScreen.titleFont = "doom"
-    testScreen.add_banner_line("TEST")
-    testScreen.add_banner_line("Test 2")
+    #testScreen.titleFont = "doom"
+    testScreen.add_banner_line("This is a banner!")
+    testScreen.add_banner_line("Where you can put your game tagline!")
     testScreen.bannerColor = "blue"
-    testScreen.add_menu_item(["Test01", "Test002", "Test0003", "Test00004", "Test000005", "Test0000006"])
+    testScreen.add_menu_item(["Continue", "New Game", "Settings", "Quit", "Menu Item", "Another Menu Item"])
     testScreen.render_title_screen()
 
 
 if __name__ == '__main__':
-    main()
+    demo()

@@ -92,7 +92,11 @@ class TitleScreen():
                 print('\r')
 
                 for i in range(0,len(self.bannerText)):
-                    self.bannerText[i] = "*" + (" " * int(((self.width - len(self.bannerText[i]))/2)-1)) + self.bannerText[i] + (" " * int(((self.width - len(self.bannerText[i]))/2)-2)) + "*"
+                    trailSpace = int(((self.width - len(self.bannerText[i]))/2-2))
+                    if len(self.bannerText[i]) % 2 != 0:
+                        trailSpace += 1
+
+                    self.bannerText[i] = "*" + (" " * int(((self.width - len(self.bannerText[i]))/2)-1)) + self.bannerText[i] + (" " * trailSpace) + "*"
                     print(self.bannerText[i])
 
                 for x in range(1, self.width):
@@ -151,7 +155,7 @@ def demo():
     testScreen.width = 100
     #testScreen.titleFont = "doom"
     testScreen.add_banner_line("This is a banner!")
-    testScreen.add_banner_line("Where you can put your game tagline!")
+    testScreen.add_banner_line("Where you can put your game tagline.")
     testScreen.bannerColor = "blue"
     testScreen.add_menu_item(["Continue", "New Game", "Settings", "Quit", "Menu Item", "Another Menu Item"])
     testScreen.render_title_screen()

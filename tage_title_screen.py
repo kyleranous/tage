@@ -7,7 +7,7 @@ class TitleScreen():
     def __init__(self, title):
         self.title = [title]
         self.titleFont = "big"
-        self.width = 122
+        self.width = 99
         self.color = None
         self.bannerText = []
         self.bannerColor = None
@@ -93,7 +93,10 @@ class TitleScreen():
 
                 for i in range(0,len(self.bannerText)):
                     trailSpace = int(((self.width - len(self.bannerText[i]))/2-2))
-                    if len(self.bannerText[i]) % 2 != 0:
+                    
+                    if len(self.bannerText[i]) % 2 != 0 and self.width % 2 == 0:
+                        trailSpace += 1
+                    elif len(self.bannerText[i]) % 2 == 0 and self.width % 2 != 0:
                         trailSpace += 1
 
                     self.bannerText[i] = "*" + (" " * int(((self.width - len(self.bannerText[i]))/2)-1)) + self.bannerText[i] + (" " * trailSpace) + "*"

@@ -37,3 +37,8 @@ class Player:
         else:
             self.inventory[itemKey] = qty
             return 1
+
+
+    def player_pos(self):
+
+        return [self.posX, self.posY]

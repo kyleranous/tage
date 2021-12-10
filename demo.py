@@ -2,6 +2,7 @@ import os
 import time
 from colorama import Fore, Style
 from tage_map import MapTile, StartTile
+from tage_player import Player
 import tage_title_screen
 
 # ToDo: Move clearConsole to a general utilities module
@@ -114,6 +115,9 @@ def main():
     errorMsg = None
     specialMsg = None
 
+    # Demo Charecter Setup
+    demoPlayer = Player("Ellie")
+
     # Map Setup
     mapMat.append([StartTile(name="Entryway"),
                 MapTile(name="Closet"),
@@ -156,6 +160,9 @@ def main():
     }
     while True: # Active Game Loop
         # Load information
+        posX = demoPlayer.player_pos()[0]
+        posY = demoPlayer.player_pos()[1]
+
         print("\t" + mapMat[posX][posY].name + "\n" + mapMat[posX][posY].shortDescription + '\n')
         
         if specialMsg is not None:  # If the tile has a Special Message, print it
@@ -175,7 +182,7 @@ def main():
         if ans.lower() == "go north":
 
             if posY + 1 < len(mapMat[posX]):
-                posY = posY + 1
+                demoPlayer.posY += 1
 
             else:
                 errorMsg = "You can not go that way"
@@ -183,7 +190,7 @@ def main():
         elif ans.lower() == "go south":
 
             if posY >= 1:
-                posY = posY - 1
+                demoPlayer.posY -= 1
 
             else:
                 errorMsg = "You can not go that way"
@@ -191,7 +198,7 @@ def main():
         elif ans.lower() == "go east":
 
             if posX + 1 < len(mapMat):
-                posX = posX + 1
+                demoPlayer.posX += 1
 
             else:
                 errorMsg = "You can not go that way"
@@ -199,7 +206,7 @@ def main():
         elif ans.lower() == "go west":
 
             if posX >= 1:
-                posX = posX - 1
+                demoPlayer.posX -= 1
 
             elif posX == 0 and posY == 0:
                 # Use this as an exit tile

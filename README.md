@@ -13,7 +13,7 @@ The game map would outline the layout of the game tiles, the Game script would b
 ### Tentative Roadmap for initial release
 1. Create a basic [Map Creation structure](https://github.com/silverback338/tbage/wiki/Map-Creation) *In-Process*
 2. Create a [Text-Parser](https://github.com/silverback338/tbage/wiki/Text-Parser) Module to take care of in game player commands
-2. Create a basic Player Character Structure
+2. Create a basic Player Character Structure *In-Process*
 3. Create a basic [Inventory Management System](https://github.com/silverback338/tbage/wiki/Inventory)
 4. Create an NPC Character Structure
 5. Create a Simple Combat mechinism

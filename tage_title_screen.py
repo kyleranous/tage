@@ -15,6 +15,7 @@ class TitleScreen():
         self.menu = []
         self.menu_col = 3
    
+
     def add_title_line(self, title):
         self.title.append(title)
 
@@ -135,7 +136,6 @@ class TitleScreen():
                 print(renderStr)
             
 
-
     def render_title_screen(self):
             
             self.render_title()
@@ -147,6 +147,7 @@ class TitleScreen():
             self.render_banner()
             
             self.render_menu()
+
 
 def demo():
 

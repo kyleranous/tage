@@ -3,6 +3,7 @@ import time
 from colorama import Fore, Style
 from tage_map import MapTile, StartTile
 from tage_player import Player
+from tage_items import Item
 import tage_title_screen
 
 # ToDo: Move clearConsole to a general utilities module
@@ -158,6 +159,12 @@ def main():
     mapMat[1][0].tile_inspect = { # Inspection for tipi tile
         "tipi" : "The tipi has blankets and pillows on the floor, looks like a comfy place to read."
     }
+
+    # Create an Item and 
+
+    mapMat[0][2].map_items.append(Item("Special Rock", "This is a very special rock.", 0))
+
+
     while True: # Active Game Loop
         # Load information
         posX = demoPlayer.player_pos()[0]

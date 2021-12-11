@@ -16,6 +16,7 @@ class MapTile():
         self.shortDescription = ""
         self.intro = ""
         self.tile_inspect = {}
+        self.map_items = []
 
     def intro_text(self):
         raise NotImplementedError("Create a subclass of MapTile")

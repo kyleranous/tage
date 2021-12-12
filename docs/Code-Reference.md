@@ -40,6 +40,28 @@
 **render_title_screen()**
 
 ##### ex:
+```python
+    from tage_title_screen import *
+
+    # Add Title Screen Text
+    testScreen = TitleScreen(title="G A M E")
+    testScreen.add_title_line("T I T L E")
+    # Set Title Screen Text Color
+    testScreen.color = "green"
+    # Add Caption
+    testScreen.caption = "Version 0.1alpha(DEMO)"
+    # Set Title Screen Width
+    testScreen.width = 100
+    # Add Banner Text
+    testScreen.add_banner_line("This is a banner!")
+    testScreen.add_banner_line("Where you can put your game tagline.")
+    # Set Banner Color
+    testScreen.bannerColor = "blue"
+    # Add Title Screen Menu
+    testScreen.add_menu_item(["Continue", "New Game", "Settings", "Quit", "Menu Item", "Another Menu Item"])
+    # Render Title Screen
+    testScreen.render_title_screen()
+```
 ![title_screen](images/title_screen.png)
 ## Modules
 

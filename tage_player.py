@@ -11,33 +11,50 @@ class Player:
     def __str__(self):
         return f"Player: {self.name}"
 
-    def adjust_inventory(self, itemKey, qty):
+    def add_item(self, item, qty):
         ''' Adjusts players inventory, adds item if qty is positive and item does
             not currently exists in inventroy, adjusts quantity if item already exists
         '''
-        # Check if item exists in inventory
-        if itemKey in self.inventory.keys():
-            
-            # If it does, check if adjustment takes value out of bounds (<0)
-            if self.inventory[itemKey] + qty >= 0:
-
-                # If adjustment is good, make adjustment
-                self.inventory[itemKey] = self.inventory[itemKey] + qty
-                # If quantity is now zero remove item from inventory
-                if self.inventory[itemKey] == 0:
-                    self.inventory.pop(itemKey)
-                return 1
-
-            # If value takes item out of bounds (<0)
+        if qty < 1:
+            raise ValueError("Please use subtract_item() to remove item from Player Inventory")
+        try:
+            item.is_item() # Function should fail at this check
+            if item.name.lower() in self.inventory:
+                # If the item is already in the map tile 
+                # Increase the Value of the Item's qty by qty
+                self.inventory[item.name.lower()]["qty"] += qty
             else:
-                # Make no adjustments return error
-                raise ValueError(f"Not enough {itemKey} in inventory.")
+                self.inventory[item.name.lower()] = {
+                    "item" : item,
+                    "qty" : qty
+                }
 
-        # If item does not exist in inventory Add Item to Inventory
+        except:
+            raise ValueError("Item must be a tage Item() class or one of it's children")
+    
+    def remove_item(self, item):
+        item = item.lower()
+        try:
+            if item.lower() in self.inventory:
+                i = self.inventory[item.lower()]["item"]
+                qty = self.inventory[item.lower()]["qty"]
+
+                del self.inventory[item]
+
+                return [i, qty]
+            
+            raise ValueError(f"Item {item} does not exist in the inventory")
+        except:
+            raise ValueError("Item name does not exist in Inventory")
+
+    def check_item(self, item):
+        if item.lower() in self.inventory:
+            return True
         else:
-            self.inventory[itemKey] = qty
-            return 1
+            return False
 
+    def has_inventory(self):
+        return True
 
     def player_pos(self):
 

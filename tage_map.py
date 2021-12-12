@@ -17,6 +17,16 @@ class MapTile():
         self.intro = ""
         self.tile_inspect = {}
         self.map_items = {}
+        self.commonRate = 50
+        self.uncommonRate = 25
+        self.rareRate = 4
+        self.ultraRareRate = 1
+        self.noSpawnRate = 20
+        self.commonSpawn = []
+        self.uncommonSpawn = []
+        self.rareSpawn = []
+        self.ultraRareSpawn = []
+        
 
     def intro_text(self):
         raise NotImplementedError("Create a subclass of MapTile")
@@ -78,7 +88,26 @@ class MapTile():
     def tile_items(self):
         return self.map_items
 
+    def set_spawn_rate(self, common, uncommon, rare, ultraRare, noSpawn):
 
+        if common + uncommon + rare + ultraRare + noSpawn != 100:
+            # If the numbers entered don't equall 100, scale the numbers based on the values entered
+                unscaledTotal = common + uncommon + rare + ultraRare + noSpawn
+                self.commonRate = (common / unscaledTotal) * 100
+                self.uncommonRate = (uncommon / unscaledTotal) * 100
+                self.rareRate = (rare / unscaledTotal) * 100
+                self.ultraRareRate = (ultraRare / unscaledTotal) * 100
+                self.noSpawnRate = (noSpawn / unscaledTotal) * 100
+        else:
+            self.commonRate = common
+            self.uncommonRate = uncommon
+            self.rareRate = rare
+            self.ultraRareRate = ultraRare
+            self.noSpawnRate = noSpawn
+                
+    def add_spawn_item(self, item, rateClass):
+        #if type(commonItem) is ""
+        pass
 
 class StartTile(MapTile):
     

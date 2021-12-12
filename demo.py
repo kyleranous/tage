@@ -1,14 +1,14 @@
-import os
 import time
 from colorama import Fore, Style
 from tage_map import MapTile, StartTile
 from tage_player import Player
-from tage_items import Item
+from tage_items import Item, Gold
 import tage_title_screen
+import tageutils
 
 # ToDo: Move clearConsole to a general utilities module
 # ToDo: Fix Function Name from clearConsole to clear_console
-clearConsole = lambda: os.system('cls' if os.name in ('nt', 'dos') else 'clear')
+
 
 # ToDo: Move yesList and noList to text_parser module
 # ToDo: fix yesList and noList variable names to YES_LIST and NO_LIST
@@ -19,7 +19,7 @@ INSPECT_LIST = ['inspect', 'look']
 
 def draw_title_screen(errorMSG=None):  # Draw the Title Screen
     
-    clearConsole()
+    tageutils.clear_console()
     
     # Create Title Screen
     t = tage_title_screen.TitleScreen("E L E A N O R ' S\nA D V E N T U R E")
@@ -39,13 +39,13 @@ def draw_title_screen(errorMSG=None):  # Draw the Title Screen
     print(Style.RESET_ALL)
 
     if ans.lower() in yesList:
-        clearConsole()
+        tageutils.clear_console()
         print("Every day we write a new page to our story.")
         time.sleep(3)
         map_intro()
 
     elif ans.lower() in noList or ans.lower() == "quit":
-        clearConsole()
+        tageutils.clear_console()
         print("Goodbye!")
         time.sleep(3)
         quit()
@@ -73,7 +73,7 @@ def draw_title_screen(errorMSG=None):  # Draw the Title Screen
 
 def map_intro():  # map_intro should be a function of the GameMap class
 
-    clearConsole()
+    tageutils.clear_console()
     print( """\tINTRODUCTION TEXT TO MAP""")
     print('\n')
 
@@ -91,7 +91,7 @@ def exit_game(errorMsg = None):
     print(Style.RESET_ALL)
 
     if ans.lower() in yesList:
-        clearConsole()
+        tageutils.clear_console()
         # Reset any special console text formatting
         print(Fore.RESET + Style.RESET_ALL)
         # Print Exit Message
@@ -159,10 +159,14 @@ def main():
     mapMat[1][0].tile_inspect = { # Inspection for tipi tile
         "tipi" : "The tipi has blankets and pillows on the floor, looks like a comfy place to read."
     }
-
+    
+    i = Item("testItem", "Test Item", 0)
+    g = Gold(100)
+    
+    print(type(g))
     # Create an Item and 
 
-    mapMat[0][2].map_items.append(Item("Special Rock", "This is a very special rock.", 0))
+    #mapMat[0][2].map_items()
 
 
     while True: # Active Game Loop

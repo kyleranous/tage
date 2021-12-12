@@ -27,25 +27,27 @@
 * menu
 
 #### Class Functions:
-##### add_title_line(title)
+**add_title_line(title)**
 
-##### add_banner_line(bannerText)
+**add_banner_line(bannerText)**
 
-##### add_menu_item(menuItem)
+**add_menu_item(menuItem)**
 
-##### render_title()
+**render_title()**
 
-##### render_menu()
+**render_menu()**
 
-##### render_title_screen()
+**render_title_screen()**
 
+##### ex:
+![title_screen](images/title_screen.png)
 ## Modules
 
 ### tageutils
-##### clearScreen()
+#### clearScreen()
 OS independed method of clearing the console
 
-##### transfer_item(item, fromObj, toObj)
+#### transfer_item(item, fromObj, toObj)
 Transfers an inventory item between two(2) objects with an inventory
 
 **ex:**

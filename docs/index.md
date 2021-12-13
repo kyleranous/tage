@@ -8,7 +8,7 @@
 
 
 #### Social Media
-* [Reddit r/ta_gameengine](https://www.redit.com/r/ta_gameengine)
+* [Reddit r/ta_gameengine](https://www.reddit.com/r/ta_gameengine)
 * Discord
 
 ## Important Information

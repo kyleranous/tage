@@ -1,6 +1,6 @@
 import time
 from colorama import Fore, Style
-from tage_map import MapTile, StartTile
+from tagemap import MapTile, StartTile
 from tage_player import Player
 from tage_items import Item, Gold
 import tage_title_screen

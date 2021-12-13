@@ -1,4 +1,6 @@
  # Class for MapTiles
+#from tage_items import Item
+
 
 class GameMap():
 
@@ -82,14 +84,16 @@ class MapTile():
 
 
     def has_inventory(self):
+        # Flag used 
         return True
 
 
     def tile_items(self):
+        # Returns list of items currently in the active tile
         return self.map_items
 
     def set_spawn_rate(self, common, uncommon, rare, ultraRare, noSpawn):
-
+        # Function sets a custom spawn rate for individual map tiles
         if common + uncommon + rare + ultraRare + noSpawn != 100:
             # If the numbers entered don't equall 100, scale the numbers based on the values entered
                 unscaledTotal = common + uncommon + rare + ultraRare + noSpawn
@@ -104,11 +108,56 @@ class MapTile():
             self.rareRate = rare
             self.ultraRareRate = ultraRare
             self.noSpawnRate = noSpawn
-                
-    def add_spawn_item(self, item, rateClass):
-        #if type(commonItem) is ""
-        pass
 
+    def __add_spawn_item(self, item, spawnList):
+        # PRIVATE - Adds Items to the spawnLists - Used by add_spawn_items()
+        try:
+            if item.is_item():
+                spawnList.append(item)
+        except:
+            if type(item) is list:
+                for i in item:
+                    try:
+                        if i.is_item():
+                            spawnList.append(i)
+                    except:
+                        pass            
+    
+    def add_spawn_item(self, item, rateClass):
+        # Adds spawn Items to the map tile
+        if type(rateClass) is int:
+            if rateClass == 1:
+                self.__add_spawn_item(item, self.commonSpawn)
+
+            elif rateClass == 2:
+                self.__add_spawn_item(item, self.uncommonSpawn)
+
+            elif rateClass == 3:
+                self.__add_spawn_item(item, self.rareSpawn)
+
+            elif rateClass == 4:
+                self.__add_spawn_item(item, self.ultraRareSpawn)
+        
+            else:
+                raise ValueError("Rate class must be an Integer or String 1-'common', 2-'uncommon', 3-'rare', 4-'ultrarare'")
+
+        elif type(rateClass) is str:
+            if rateClass.lower() == "common":
+                self.__add_spawn_item(item, self.commonSpawn)
+
+            elif rateClass.lower() == "uncommon":
+                self.__add_spawn_item(item, self.uncommonSpawn)
+
+            elif rateClass.lower() == "rare":
+                self.__add_spawn_item(item, self.rareSpawn)
+
+            elif rateClass.lower() == "ultrarare":
+                self.__add_spawn_item(item, self.ultraRareSpawn)
+
+            else:
+                raise ValueError("Rate class must be an int or str: 1-'common', 2-'uncommon', 3-'rare', 4-'ultrarare'")
+
+            
 class StartTile(MapTile):
     
     def intro_text(self):

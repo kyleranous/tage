@@ -24,10 +24,10 @@ class MapTile():
         self.commonRate = 0.503
         self.uncommonRate = .25
         self.rareRate = .04
-        self.ultraRareRate = .007
-        self.noSpawnRate = .2
+        self.ultraRareRate = .007 
+        self.noSpawnRate = .2 
         self.commonSpawn = []
-        self.uncommonSpawn = []
+        self.uncommonSpawn = [] 
         self.rareSpawn = []
         self.ultraRareSpawn = []
         self.spawnRates = []
@@ -45,12 +45,13 @@ class MapTile():
         return "Tile: {}\nDescription:{}".format(self.name, self.shortDescription)
     
     def inspect_list(self):
-        if len(self.tileInspect) > 0:
+        if self.tileInspect:
             return True
         else:
             return False
     
     def add_item(self, item, qty):
+        # Adds Item to the Maps Inventory
         if qty < 1:
             raise ValueError("Please use subtract_item() to remove item from MapTile")
         try:

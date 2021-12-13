@@ -97,7 +97,7 @@ class MapTile():
         return True
 
 
-    def tile_items(self):
+    def tile_inventory(self):
         # Returns list of items currently in the active tile
         return self.map_items
 

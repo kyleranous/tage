@@ -6,8 +6,38 @@
 ### MapTile()
 *Module: tage_map*
 
-**Class Functions**:
+#### Class Variables
 
+#### Class Functions:
+##### intro_text()
+
+##### __str__()
+
+##### inspect_list()
+
+##### add_item()
+
+##### remove_item()
+
+##### check_item()
+
+##### has_inventory()
+
+##### tile_inventory()
+
+##### set_spawn_rate()
+
+##### __add_spawn_item()
+*PRIVATE FUNCTION*
+See [add_spawn_item()](#add_spawn_item())
+
+##### add_spawn_item()
+
+##### __spawn_item()
+*PRIVATE FUNCTION*
+See [spawn_item()](#spawn_item())
+
+##### spawn_item()
 ### StartTile()
 *Module: tage_map*
 *Extends [MapTile()](#maptile())*

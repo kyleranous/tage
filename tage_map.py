@@ -1,5 +1,5 @@
- # Class for MapTiles
-#from tage_items import Item
+# Class for MapTiles
+import random
 
 
 class GameMap():
@@ -17,17 +17,25 @@ class MapTile():
         self.name = name
         self.shortDescription = ""
         self.intro = ""
-        self.tile_inspect = {}
+        self.tileInspect = {}
+        # Inventory Management
         self.map_items = {}
-        self.commonRate = 50
-        self.uncommonRate = 25
-        self.rareRate = 4
-        self.ultraRareRate = 1
-        self.noSpawnRate = 20
+        # Spawn Management
+        self.commonRate = 0.503
+        self.uncommonRate = .25
+        self.rareRate = .04
+        self.ultraRareRate = .007
+        self.noSpawnRate = .2
         self.commonSpawn = []
         self.uncommonSpawn = []
         self.rareSpawn = []
         self.ultraRareSpawn = []
+        self.spawnRates = []
+        self.spawnRates.append(int(self.noSpawnRate * 1000))
+        self.spawnRates.append(self.spawnRates[0] + int(self.commonRate*1000))
+        self.spawnRates.append(self.spawnRates[1] + int(self.uncommonRate*1000))
+        self.spawnRates.append(self.spawnRates[2] + int(self.rareRate*1000))
+        self.spawnRates.append(self.spawnRates[3] + int(self.ultraRareRate*1000))
         
 
     def intro_text(self):
@@ -37,7 +45,7 @@ class MapTile():
         return "Tile: {}\nDescription:{}".format(self.name, self.shortDescription)
     
     def inspect_list(self):
-        if len(self.tile_inspect) > 0:
+        if len(self.tileInspect) > 0:
             return True
         else:
             return False
@@ -94,20 +102,27 @@ class MapTile():
 
     def set_spawn_rate(self, common, uncommon, rare, ultraRare, noSpawn):
         # Function sets a custom spawn rate for individual map tiles
-        if common + uncommon + rare + ultraRare + noSpawn != 100:
+        if common + uncommon + rare + ultraRare + noSpawn != 1:
             # If the numbers entered don't equall 100, scale the numbers based on the values entered
                 unscaledTotal = common + uncommon + rare + ultraRare + noSpawn
-                self.commonRate = (common / unscaledTotal) * 100
-                self.uncommonRate = (uncommon / unscaledTotal) * 100
-                self.rareRate = (rare / unscaledTotal) * 100
-                self.ultraRareRate = (ultraRare / unscaledTotal) * 100
-                self.noSpawnRate = (noSpawn / unscaledTotal) * 100
+                self.commonRate = (common / unscaledTotal)
+                self.uncommonRate = (uncommon / unscaledTotal)
+                self.rareRate = (rare / unscaledTotal)
+                self.ultraRareRate = (ultraRare / unscaledTotal)
+                self.noSpawnRate = (noSpawn / unscaledTotal)
         else:
             self.commonRate = common
             self.uncommonRate = uncommon
             self.rareRate = rare
             self.ultraRareRate = ultraRare
             self.noSpawnRate = noSpawn
+
+        self.spawnRates.clear()
+        self.spawnRates.append(int(self.noSpawnRate * 1000))
+        self.spawnRates.append(self.spawnRates[0] + int(self.commonRate*1000))
+        self.spawnRates.append(self.spawnRates[1] + int(self.uncommonRate*1000))
+        self.spawnRates.append(self.spawnRates[2] + int(self.rareRate*1000))
+        self.spawnRates.append(self.spawnRates[3] + int(self.ultraRareRate*1000))
 
     def __add_spawn_item(self, item, spawnList):
         # PRIVATE - Adds Items to the spawnLists - Used by add_spawn_items()
@@ -157,7 +172,39 @@ class MapTile():
             else:
                 raise ValueError("Rate class must be an int or str: 1-'common', 2-'uncommon', 3-'rare', 4-'ultrarare'")
 
+    def __spawn_item(self, itemList):
+        pass
+        random.shuffle(itemList)
+        self.add_item(itemList[0], 1)
+
+    
+    def spawn_item(self):
+        spawnNumber = int(random.random() * 1000)
+
+        if spawnNumber in range(0, self.spawnRates[0]):
+            # Do not spawn an item into the tile
+            pass
+
+        elif spawnNumber in range(self.spawnRates[0], self.spawnRates[1]):
+        
+            if self.commonSpawn: # If commonSpawn list is not empty, pass it to __spawn_item()
+                self.__spawn_item(self.commonSpawn)
+
+        elif spawnNumber in range(self.spawnRates[1], self.spawnRates[2]):
+
+            if self.uncommonSpawn: # If uncommonSpawn list is not empty, pass it to __spawn_item()
+                self.__spawn_item(self.uncommonSpawn)
+
+        elif spawnNumber in range(self.spawnRates[2], self.spawnRates[3]):
             
+            if self.rareSpawn: # If rareSpawn list is not empty, pass it to __spawn_item()
+                self.__spawn_item(self.rareSpawn)
+
+        elif spawnNumber in range(self.spawnRates[3], self.spawnRates[4]):
+            
+            if self.ultraRareSpawn: # If ultraRareSpawn list is not empty, pass it to __spawn_item()
+                self.__spawn_item(self.ultraRareSpawn)
+
 class StartTile(MapTile):
     
     def intro_text(self):

@@ -29,18 +29,21 @@
 
 ##### __add_spawn_item()
 *PRIVATE FUNCTION*
-See [add_spawn_item()](#add_spawn_item())
+
+See [add_spawn_item()](#add_spawn_item)
 
 ##### add_spawn_item()
 
 ##### __spawn_item()
 *PRIVATE FUNCTION*
-See [spawn_item()](#spawn_item())
+
+See [spawn_item()](#spawn_item)
 
 ##### spawn_item()
 ### StartTile()
 *Module: tage_map*
-*Extends [MapTile()](#maptile())*
+
+*Extends [MapTile()](#maptile)*
 
 **Class Functions**:
 
@@ -57,11 +60,11 @@ See [spawn_item()](#spawn_item())
 * menu
 
 #### Class Functions:
-**add_title_line(title)**
+**add_title_line()**
 
-**add_banner_line(bannerText)**
+**add_banner_line()**
 
-**add_menu_item(menuItem)**
+**add_menu_item()**
 
 **render_title()**
 
@@ -99,7 +102,7 @@ See [spawn_item()](#spawn_item())
 #### clearScreen()
 OS independed method of clearing the console
 
-#### transfer_item(item, fromObj, toObj)
+#### transfer_item()
 Transfers an inventory item between two(2) objects with an inventory
 
 **ex:**

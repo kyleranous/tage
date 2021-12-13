@@ -1,55 +1,55 @@
-## Classes
+# Classes
 
-### GameMap()
+## GameMap()
 *Module: tage_map*
 
-### MapTile()
+## MapTile()
 *Module: tage_map*
 
-#### Class Variables
+### Class Variables
 
-#### Class Functions:
-##### intro_text()
+### Class Functions:
+#### intro_text()
 
-##### __str__()
+#### __str__()
 
-##### inspect_list()
+#### inspect_list()
 
-##### add_item()
+#### add_item()
 
-##### remove_item()
+#### remove_item()
 
-##### check_item()
+#### check_item()
 
-##### has_inventory()
+#### has_inventory()
 
-##### tile_inventory()
+#### tile_inventory()
 
-##### set_spawn_rate()
+#### set_spawn_rate()
 
-##### __add_spawn_item()
+#### __add_spawn_item()
 *PRIVATE FUNCTION*
 
 See [add_spawn_item()](#add_spawn_item)
 
-##### add_spawn_item()
+#### add_spawn_item()
 
-##### __spawn_item()
+#### __spawn_item()
 *PRIVATE FUNCTION*
 
 See [spawn_item()](#spawn_item)
 
-##### spawn_item()
-### StartTile()
+#### spawn_item()
+## StartTile()
 *Module: tage_map*
 
 *Extends [MapTile()](#maptile)*
 
 **Class Functions**:
 
-### TitleScreen()
+## TitleScreen()
 
-#### Class Variables
+### Class Variables
 * title
 * titleFont
 * width
@@ -59,7 +59,7 @@ See [spawn_item()](#spawn_item)
 * caption
 * menu
 
-#### Class Functions:
+### Class Functions:
 **add_title_line()**
 
 **add_banner_line()**
@@ -72,7 +72,7 @@ See [spawn_item()](#spawn_item)
 
 **render_title_screen()**
 
-##### ex:
+#### ex:
 ```python
     from tage_title_screen import *
 
@@ -96,13 +96,13 @@ See [spawn_item()](#spawn_item)
     testScreen.render_title_screen()
 ```
 ![title_screen](images/title_screen.png)
-## Modules
+# Modules
 
-### tageutils
-#### clearScreen()
+## tageutils
+### clearScreen()
 OS independed method of clearing the console
 
-#### transfer_item()
+### transfer_item()
 Transfers an inventory item between two(2) objects with an inventory
 
 **ex:**

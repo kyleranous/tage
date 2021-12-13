@@ -1,9 +1,9 @@
 # Classes
 
-## GameMap()
+## Class::GameMap()
 *Module: tage_map*
 
-## MapTile()
+## Class::MapTile()
 *Module: tage_map*
 
 ### Class Variables
@@ -40,14 +40,14 @@ See [add_spawn_item()](#add_spawn_item)
 See [spawn_item()](#spawn_item)
 
 #### spawn_item()
-## StartTile()
+## Class::StartTile()
 *Module: tage_map*
 
 *Extends [MapTile()](#maptile)*
 
 **Class Functions**:
 
-## TitleScreen()
+## Class::TitleScreen()
 
 ### Class Variables
 * title

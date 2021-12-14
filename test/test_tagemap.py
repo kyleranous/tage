@@ -21,6 +21,7 @@ class test_map_tile(unittest.TestCase):
             m.remove_item(i.name)
             self.assertFalse(m.map_items)
 
+
     def test_check_item(self):
         i = Item("Test Item", "This is a test item", 0)
         m = MapTile("Test Tile")

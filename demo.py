@@ -2,7 +2,7 @@ import time
 from colorama import Fore, Style
 from tagemap import MapTile, StartTile
 from tage_player import Player
-from tage_items import Item, Gold
+from tageitem import Item, Gold
 import tage_title_screen
 import tageutils
 

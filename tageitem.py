@@ -7,10 +7,13 @@ class Item():
         self.name = name
         self.description = description
         self.value = value
-        self.qty = 1
+        #self.qty = 1
 
     def __str__(self):
         return "{}\n-------\n{}\nValue: {}\n".format(self.name, self.description, self.value)
+
+    def is_item(self):
+        return True
     
 class Gold(Item):
     # Sample Subclass of Item, Don't know if Gold will be the base curency

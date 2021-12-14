@@ -1,10 +1,10 @@
 import time
 from colorama import Fore, Style
-from tagemap import MapTile, StartTile
-from tageplayer import Player
-from tageitem import Item, Gold
-import tagetitlescreen
-import tageutils
+from modules.tagemap import MapTile, StartTile
+from modules.tageplayer import Player
+from modules.tageitem import Item, Gold
+import modules.tagetitlescreen as tagetitlescreen
+import modules.tageutils as tageutils
 
 # ToDo: Move clearConsole to a general utilities module
 # ToDo: Fix Function Name from clearConsole to clear_console

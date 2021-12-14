@@ -11,9 +11,8 @@ import modules.tageutils as tageutils
 
 
 # ToDo: Move yesList and noList to text_parser module
-# ToDo: fix yesList and noList variable names to YES_LIST and NO_LIST
-yesList = ['YEA', 'YES', 'Y', 'Yea', 'Yes', 'yea', 'yes', 'y']
-noList = ['NAH', 'NO', 'N', 'Nah', 'No', 'n', 'nah', 'no']
+YES_LIST = ['YEA', 'YES', 'Y', 'Yea', 'Yes', 'yea', 'yes', 'y']
+NO_LIST = ['NAH', 'NO', 'N', 'Nah', 'No', 'n', 'nah', 'no']
 INSPECT_LIST = ['inspect', 'look']
 
 
@@ -38,13 +37,13 @@ def draw_title_screen(errorMSG=None):  # Draw the Title Screen
     ans = input('> ')
     print(Style.RESET_ALL)
 
-    if ans.lower() in yesList:
+    if ans.lower() in YES_LIST:
         tageutils.clear_console()
         print("Every day we write a new page to our story.")
         time.sleep(3)
         map_intro()
 
-    elif ans.lower() in noList or ans.lower() == "quit":
+    elif ans.lower() in NO_LIST or ans.lower() == "quit":
         tageutils.clear_console()
         print("Goodbye!")
         time.sleep(3)
@@ -90,7 +89,7 @@ def exit_game(errorMsg = None):
     ans = input('> ')
     print(Style.RESET_ALL)
 
-    if ans.lower() in yesList:
+    if ans.lower() in YES_LIST:
         tageutils.clear_console()
         # Reset any special console text formatting
         print(Fore.RESET + Style.RESET_ALL)
@@ -100,7 +99,7 @@ def exit_game(errorMsg = None):
         time.sleep(3)
         draw_title_screen()
         
-    elif ans.lower() in noList:
+    elif ans.lower() in NO_LIST:
 
         return
 

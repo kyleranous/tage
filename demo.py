@@ -3,7 +3,7 @@ from colorama import Fore, Style
 from tagemap import MapTile, StartTile
 from tage_player import Player
 from tageitem import Item, Gold
-import tage_title_screen
+import tagetitlescreen
 import tageutils
 
 # ToDo: Move clearConsole to a general utilities module
@@ -22,7 +22,7 @@ def draw_title_screen(errorMSG=None):  # Draw the Title Screen
     tageutils.clear_console()
     
     # Create Title Screen
-    t = tage_title_screen.TitleScreen("E L E A N O R ' S\nA D V E N T U R E")
+    t = tagetitlescreen.TitleScreen("E L E A N O R ' S\nA D V E N T U R E")
     t.color = "green"
     t.caption = "Version 0.1alpha"
     t.add_banner_line("PLACEHOLDER")

@@ -9,7 +9,9 @@ def transfer_item(item, fromObj, toObj):
     try:
         fromObj.has_inventory()
     except:
-        raise TypeError("fromObj has no Inventory")
+
+        # This should not be a TypeError - KER 13/12/21
+        raise RuntimeError("fromObj has no Inventory")
     
     # Check that item exists in fromObj
     if fromObj.check_item(item):

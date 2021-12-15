@@ -119,7 +119,7 @@ List of spawn rates adjusted to be used with spawn function. Do not manipulate. 
 
 #### intro_text()
 
-#### __str__()
+#### \_\_str\_\_()
 Returns a string
 ```python
 >>> from modules.tagemap import MapTile
@@ -134,6 +134,7 @@ Description:This is a test tile.
 ```
 #### inspect_list()
 *bool*
+
 Returns True if inspect_list is not empty, false if it is empty.
 #### add_item(item, qty)
 Adds an item to the Map Tiles Inventory. Qty must be greater then or equal to 1. 
@@ -163,6 +164,7 @@ Removes item from the map tile inventory by name. Expects a string.
 ```
 #### check_item(itemName)
 *bool*
+
 Checks if an item exists in the map inventory. Expects a string. Returns True if item name exists as a key in map_items, False if the item name is not a key in map_items.
 
 #### has_inventory()

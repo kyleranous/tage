@@ -1,8 +1,8 @@
 import unittest
-from tageutils import *
-from tageitem import Item
-from tageplayer import Player
-from tagemap import MapTile
+from modules.tageutils import *
+from modules.tageitem import Item
+from modules.tageplayer import Player
+from modules.tagemap import MapTile
 
 
 class test_tageutils(unittest.TestCase):

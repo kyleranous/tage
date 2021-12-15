@@ -1,6 +1,6 @@
 import unittest
-from tagemap import MapTile
-from tageitem import Item
+from modules.tagemap import MapTile
+from modules.tageitem import Item
 
 
 class test_map_tile(unittest.TestCase):    

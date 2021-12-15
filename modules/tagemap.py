@@ -21,7 +21,7 @@ class MapTile():
         # Inventory Management
         self.map_items = {}
         # Spawn Management
-        self.commonRate = 0.503
+        self.commonRate = .503
         self.uncommonRate = .25
         self.rareRate = .04
         self.ultraRareRate = .007 
@@ -69,24 +69,24 @@ class MapTile():
         except:
             raise ValueError("Item must be a tage Item() class or one of it's children")
 
-    def remove_item(self, item):
-        item = item.lower()
+    def remove_item(self, itemName):
+        itemName = itemName.lower()
         try:
-            if item.lower() in self.map_items:
+            if itemName.lower() in self.map_items:
                 # If item exists in the list, check to see if there is enough qty to complete transaction
-                i = self.map_items[item.lower()]["item"]
-                qty = self.map_items[item.lower()]["qty"]
+                i = self.map_items[itemName.lower()]["item"]
+                qty = self.map_items[itemName.lower()]["qty"]
 
-                del self.map_items[item]
+                del self.map_items[itemName]
 
                 return [i, qty]
-            raise ValueError(f"Item {item} does not exist on current map tile")
+            raise ValueError(f"Item {itemName} does not exist on current map tile")
         except:
             raise ValueError("Item name does not exist in MapTile")
 
 
-    def check_item(self, item):
-        if item.lower() in self.map_items:
+    def check_item(self, itemName):
+        if itemName.lower() in self.map_items:
             return True
         else:
             return False

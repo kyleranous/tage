@@ -18,28 +18,33 @@ m = MapTile("Tile Name")
 
 #### name
 *string*
+
 Name of the map tile, set when MapTile object is initialized. Renders at the top of the screen when tile is active.
 
 #### shortDescription
 *string*
+
 Short text description of the tile. Used to pass information to the player
 
 **Default Value: empty**
 
 #### intro
 *string*
+
 Introduction text displayed to the player the first time they visit a tile
 
 **Default Value: empty**
 
 #### tileInspect
 *dict*
+
 Dictionary that holds custom inspectable objects for the map tile. Not fully implemented yet.
 
 **Default Value: {}**
 
 #### map_items
 *dict*
+
 Dictionary that holds the map inventory. Inventory is defined as items the player can interact with. Do not updated manually. Use [add_item()](#add_item) or [remove_item()](#remove_item) functions to manipulate the dictionary.
 
 ```python
@@ -57,60 +62,70 @@ Dictionary that holds the map inventory. Inventory is defined as items the playe
 
 #### commonRate
 *float*
+
 Rate that common items are spawned in the map tile. Do not update manually. Use [set_spawn_rate()](#set_spawn_rate) to set custom spawn rates.
 
 **Default Value: 0.503**
 
 #### uncommonRate
 *float*
+
 Rate that uncommon items are spawned in the map tile. Do not update manually. Use [set_spawn_rate()](#set_spawn_rate) to set custom spawn rates.
 
 **Default Value: 0.25**
 
 #### rareRate
 *float*
+
 Rate that Rare items are spawned in the map tile. Do not update manually. Use [set_spawn_rate()](#set_spawn_rate) to set custom spawn rates.
 
 **Default Value: .04**
 
 #### ultraRareRate
 *float*
+
 Rate that Ultra-Rare items are spawned in the map tile. Do not update manually. Use [set_spawn_rate()](#set_spawn_rate) to set custom spawn rates.
 
 **Default Value: .007**
 
 #### noSpawnRate
 *float*
+
 Rate that No Item will spawn in the map tile. Do not update manually. Use [set_spawn_rate()](#set_spawn_rate) to set custom spawn rates.
 
 **Default Value: .2**
 
 #### commonSpawn
 *list*
+
 List of items that will spawn at the common rate. Items are chosen from the list at random. Do not update manually. Use [add_spawn_item()](#add_spawn_item) to add items to spawn list.
 
 **Default Value: []**
 
 #### uncommonSpawn
 *list*
+
 List of items that will spawn at the uncommon rate. Items are chosen from the list at random. Do not update manually. Use [add_spawn_item()](#add_spawn_item) to add items to spawn list.
 
 **Default Value: []**
 
 #### rareSpawn
 *list*
+
 List of items that will spawn at the rare rate. Items are chosen from the list at random. Do not update manually. Use [add_spawn_item()](#add_spawn_item) to add items to spawn list.
 
 **Default Value: []**
 
 #### ultraRareSpawn
 *list*
+
 List of items that will spawn at the ultra-rare rate. Items are chosen from the list at random. Do not update manually. Use [add_spawn_item()](#add_spawn_item) to add items to spawn list.
 
 **Default Value: []**
 
 #### spawnRates
 *list*
+
 List of spawn rates adjusted to be used with spawn function. Do not manipulate. List is populated automatically when spawn rates are changed with [add_spawn_item()](#add_spawn_item).
 
 **Default Value: [200, 703, 953, 993, 1000]**
@@ -119,7 +134,7 @@ List of spawn rates adjusted to be used with spawn function. Do not manipulate. 
 
 #### intro_text()
 
-#### \_\_str\_\_()
+#### \_\_str\_\_()<!---Need to figure out how to properly escape these underscores--->
 Returns a string
 ```python
 >>> from modules.tagemap import MapTile

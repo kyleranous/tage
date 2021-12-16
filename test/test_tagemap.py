@@ -15,11 +15,11 @@ class test_map_tile(unittest.TestCase):
         m.add_item(i, 1)
 
         with self.subTest():
-            self.assertEqual(m.map_items[i.name.lower()]["item"], i, "Item was not added to tile inventory correctly")
+            self.assertEqual(m.mapItems[i.name.lower()]["item"], i, "Item was not added to tile inventory correctly")
         
         with self.subTest():
             m.remove_item(i.name)
-            self.assertFalse(m.map_items)
+            self.assertFalse(m.mapItems)
 
 
     def test_check_item(self):

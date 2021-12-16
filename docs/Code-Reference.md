@@ -221,7 +221,7 @@ See [add_spawn_item()](#add_spawn_item)
 
 #### add_spawn_item(item, rateClass)
 Adds an item to one of the spawn class lists. *item* can be a single Item object or a list of Item objects. rateClass can be an integer or a string:
-<table>
+<table style="margin-left: auto; margin-right: auto;">
     <tr>
         <th>int</th><th>str</th>
     </tr>
@@ -238,7 +238,7 @@ Adds an item to one of the spawn class lists. *item* can be a single Item object
         <td>4</td><td>ultrarare</td>
     </tr>
 </table>
-
+<br>
 ```python
 >>> from modules.tagemap import MapTile
 >>> from modules.tageitem import Item

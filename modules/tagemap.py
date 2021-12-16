@@ -19,7 +19,7 @@ class MapTile():
         self.intro = ""
         self.tileInspect = {}
         # Inventory Management
-        self.map_items = {}
+        self.mapItems = {}
         # Spawn Management
         self.commonRate = .503
         self.uncommonRate = .25
@@ -56,12 +56,12 @@ class MapTile():
             raise ValueError("Please use subtract_item() to remove item from MapTile")
         try:
             item.is_item() # Function should fail at this check
-            if item.name.lower() in self.map_items:
+            if item.name.lower() in self.mapItems:
                 # If the item is already in the map tile
                 # Increase the Value of the item's qty by qty
-                self.map_items[item.name.lower()]["qty"] += qty
+                self.mapItems[item.name.lower()]["qty"] += qty
             else:
-                self.map_items[item.name.lower()] = {
+                self.mapItems[item.name.lower()] = {
                     "item" : item,
                     "qty" : qty
                 }
@@ -72,21 +72,21 @@ class MapTile():
     def remove_item(self, itemName):
         itemName = itemName.lower()
         try:
-            if itemName.lower() in self.map_items:
+            if itemName.lower() in self.mapItems:
                 # If item exists in the list, check to see if there is enough qty to complete transaction
-                i = self.map_items[itemName.lower()]["item"]
-                qty = self.map_items[itemName.lower()]["qty"]
+                i = self.mapItems[itemName.lower()]["item"]
+                qty = self.mapItems[itemName.lower()]["qty"]
 
-                del self.map_items[itemName]
+                del self.mapItems[itemName]
 
                 return [i, qty]
-            raise ValueError(f"Item {itemName} does not exist on current map tile")
+            raise RuntimeError(f"Item {itemName} does not exist on current map tile")
         except:
-            raise ValueError("Item name does not exist in MapTile")
+            raise RuntimeError("Item name does not exist in MapTile")
 
 
     def check_item(self, itemName):
-        if itemName.lower() in self.map_items:
+        if itemName.lower() in self.mapItems:
             return True
         else:
             return False
@@ -99,7 +99,7 @@ class MapTile():
 
     def tile_inventory(self):
         # Returns list of items currently in the active tile
-        return self.map_items
+        return self.mapItems
 
     def set_spawn_rate(self, common, uncommon, rare, ultraRare, noSpawn):
         # Function sets a custom spawn rate for individual map tiles

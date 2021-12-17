@@ -418,14 +418,13 @@ Number of columns the menu should be rendered in.
     from tage_title_screen import *
 
     # Add Title Screen Text
-    testScreen = TitleScreen(title="G A M E")
+    testScreen = TitleScreen()
+    testScreen.add_title_line("G A M E")
     testScreen.add_title_line("T I T L E")
     # Set Title Screen Text Color
     testScreen.color = "green"
     # Add Caption
     testScreen.caption = "Version 0.1alpha(DEMO)"
-    # Set Title Screen Width
-    testScreen.width = 100
     # Add Banner Text
     testScreen.add_banner_line("This is a banner!")
     testScreen.add_banner_line("Where you can put your game tagline.")
@@ -437,13 +436,12 @@ Number of columns the menu should be rendered in.
     testScreen.render_title_screen()
 ```
 ![title_screen](images/title_screen.png)
-# Modules
 
-## tageutils
-### clearScreen()
+# module::tageutils
+## function::clearScreen()
 OS independed method of clearing the console
 
-### transfer_item()
+## function::transfer_item(item, fromObj, toObj)
 Transfers an inventory item between two(2) objects with an inventory
 
 **ex:**

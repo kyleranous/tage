@@ -4,7 +4,7 @@
 ## Project Summary
 TAGE is a game engine to create Text Based Adventures. It is open source and free for people to use. The core concept is people with little to no programming experience would be able to write game "scripts" that the engine would then parse into a playable Text Based Adventure game. The classes and functions in the engine could also be pulled into a seperate project and used as a base to create a more indepth adventure in python.
 
-Vie the [documentation](https://silverback338.github.io/tage/)
+View the [documentation](https://silverback338.github.io/tage/)
 
 ### Concept of Operation
 A game creator would create a game with a minimum of two(2) files:

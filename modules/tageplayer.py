@@ -2,6 +2,9 @@
 class Player:
     
     def __init__(self, name):
+        if type(name) is not str:
+            raise ValueError("Name must be a string")
+        
         self.name = name
         self.inventory = {}
         self.money = 0
@@ -42,10 +45,10 @@ class Player:
                 del self.inventory[item]
 
                 return [i, qty]
-            
-            raise ValueError(f"Item {item} does not exist in the inventory")
+            else:
+                raise RuntimeError(f"Item {item} does not exist in the inventory")
         except:
-            raise ValueError("Item name does not exist in Inventory")
+            raise RuntimeError("Item name does not exist in Inventory")
 
     def check_item(self, item):
         if item.lower() in self.inventory:
@@ -59,3 +62,13 @@ class Player:
     def player_pos(self):
 
         return [self.posX, self.posY]
+
+    def update_pos(self, dx, dy):
+        if type(dx) is int:
+            if type(dy) is int:
+                self.posX += dx
+                self.posY += dy
+            else:
+                raise ValueError("dx/dy must be integers")
+        else:
+            raise ValueError("dx/dy must be integers")

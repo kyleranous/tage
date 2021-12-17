@@ -401,39 +401,88 @@ Number of columns the menu should be rendered in.
 **Default Value: 3**
 
 ### Class Functions:
-**add_title_line()**
 
-**add_banner_line()**
+#### add_title_line()
+Adds a string item to the title list. Each list entry will be (1) Line of text. Reccomendation is to keep title text to no more then 2 lines.
 
-**add_menu_item()**
-
-**render_title()**
-
-**render_menu()**
-
-**render_title_screen()**
-
-#### ex:
 ```python
-    from tage_title_screen import *
+>>>from modules.tagesplash import TitleScreen
+>>>
+>>> t = TitleScreen()
+>>> t.add_title_line('G A M E')
+>>> t.add_title_line('T I T L E')
+>>>
+>>> t.title
+['G A M E', 'T I T L E']
+
+```
+#### add_banner_line()
+Adds a string item to be rendered as a line of text in the banner.
+
+```python
+>>> t.add_banner_line("This is a banner!")
+>>> t.add_banner_line("Where you can put your game tagline.")
+>>>
+>>> t.bannerText
+['This is a banner!', 'Where you can put your game tagline.']
+```
+
+#### add_menu_item()
+Can take a string or a list of strings and add it to the menu list. 
+
+```python
+>>> t.add_menu_item(["Continue", "New Game", "Settings", "Quit", "Menu Item", "Another Menu Item"])
+>>> t.menu
+['Continue', 'New Game', 'Settings', 'Quit', 'Menu Item', 'Another Menu Item']
+```
+#### render_title()
+If the title is not empty, renders only the title in stylized ascii art.
+
+```python
+>>> t.color = "green"
+>>> t.render_title()
+```
+![render_title](images/render_title.png)
+
+#### render_banner()
+If the banner is not empty, will render the banner text in a banner drawn with '*'
+Each list item is rendered as a line, and the lines are centered in the banner.
+
+```python
+t.bannerColor = "blue"
+t.render_banner()
+```
+![render_banner](images/render_banner.png)
+#### render_menu()
+If the menu list is not empty, will render the menu in columns (default 3 columns). This function does not create functionality for the menu and only displays it.
+
+```python
+>>> t.render_menu()
+```
+![render_menu](images/render_menu.png)
+#### render_title_screen()
+This function will render a formatted title screen with the Title rendered at top, then the caption, then the banner and finally the menu. If any of those objects are empty, it will skip rendering it. This function only displays the title screen and does not add any functionality.
+
+```python
+    from modules.tagesplash import TitleScreen
 
     # Add Title Screen Text
-    testScreen = TitleScreen()
-    testScreen.add_title_line("G A M E")
-    testScreen.add_title_line("T I T L E")
+    t = TitleScreen()
+    t.add_title_line("G A M E")
+    t.add_title_line("T I T L E")
     # Set Title Screen Text Color
-    testScreen.color = "green"
+    t.color = "green"
     # Add Caption
-    testScreen.caption = "Version 0.1alpha(DEMO)"
+    t.caption = "Version 0.1alpha(DEMO)"
     # Add Banner Text
-    testScreen.add_banner_line("This is a banner!")
-    testScreen.add_banner_line("Where you can put your game tagline.")
+    t.add_banner_line("This is a banner!")
+    t.add_banner_line("Where you can put your game tagline.")
     # Set Banner Color
-    testScreen.bannerColor = "blue"
+    t.bannerColor = "blue"
     # Add Title Screen Menu
-    testScreen.add_menu_item(["Continue", "New Game", "Settings", "Quit", "Menu Item", "Another Menu Item"])
+    t.add_menu_item(["Continue", "New Game", "Settings", "Quit", "Menu Item", "Another Menu Item"])
     # Render Title Screen
-    testScreen.render_title_screen()
+    t.render_title_screen()
 ```
 ![title_screen](images/title_screen.png)
 

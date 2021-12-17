@@ -299,23 +299,106 @@ Will spawn a single item. A random number generator will select the spawn range,
 ```
 ---
 ## Class::StartTile()
-*Module: tage_map*
+*Module: tagemap*
 
 *Extends [MapTile()](#maptile)*
 
 **Class Functions**:
 
+# Module::tagesplash
+---
 ## Class::TitleScreen()
-
+```python
+from modules.tagesplash import TitleScreen
+```
 ### Class Variables
-* title
-* titleFont
-* width
-* color
-* bannerText
-* bannerColor
-* caption
-* menu
+
+#### title
+*list*
+
+Game title, will be rendered in ascii art format. Each list item will be one rendered line.
+
+**Default Value: []**
+
+#### titleFont
+*str*
+
+Font that the title is rendered in.
+
+Good font options:
+* basic
+* big
+* colossal
+* cyberlarge
+* cybermedium
+* doom
+* EPIC
+* fender
+* ogre
+* pebbles
+* poison
+* puffy
+* roman
+* rounded
+* shadow
+* slant
+* standard
+* starwars
+* univers
+
+For a full list of available fonts see the [figlet](http://www.figlet.org/fontdb.cgi) website
+
+**Default Value: "big"**
+
+#### width
+*int*
+
+Width of the title screen in columns (1 character is 1 column). Increase the column count to prevent title from wrapping.
+
+**Default Value: 100**
+
+#### color
+*str*
+
+Color of the game title. 
+Options:
+* "blue"
+* "green"
+* "red"
+* "yellow"
+* "black"
+* "cyan"
+* "magenta"
+
+**Default Value:** `None`
+
+#### bannerText
+*list*
+
+List of strings rendered in the banner. Each list item will be a line in the banner.
+
+**Default Value: []**
+
+
+#### caption
+*str*
+Caption renders a single line of text under the game title.
+
+**Default Value:** `None`
+
+#### menu
+*list*
+
+List of String objects which will be rendered as Menu Items. 
+
+**Default Value: []**
+
+#### menuCol
+*int*
+
+Number of columns the menu should be rendered in.
+
+**Default Value: 3**
 
 ### Class Functions:
 **add_title_line()**

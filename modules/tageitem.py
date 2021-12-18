@@ -24,10 +24,3 @@ class Item():
     def is_item(self):
         return True
     
-class Gold(Item):
-    # Sample Subclass of Item, Don't know if Gold will be the base curency
-    def __init__(self, amt):
-        self.amt = amt
-        super().__init__(name="Gold",
-                         description="A Round Coin with {} stamped on the front.".format(str(self.amt)),
-                         value=self.amt)

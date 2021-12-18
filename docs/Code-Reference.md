@@ -1,3 +1,52 @@
+# TAGE Code Reference
+
+---
+
+# module::tageitem
+---
+## Class::Item(name, description, value)
+```python
+from modules.tageitem import Item
+```
+### Class Variables
+
+#### name
+*string*
+
+Name of item. Must be a string. Does not need to be unique, but not having unique item names may confuse players
+
+#### description
+*string*
+
+Description of item. Text that is displayed when player inspects an item. Must be a string.
+
+#### value
+*int*
+
+Value of item, used for purchasing items. There is not a current mechanic in the engine that uses this.
+
+### Class Functions
+
+#### \_\_str\_\_()
+
+Returns a formatted string with the item name, description, and value
+
+```python
+>>> from modules.tageitem import Item
+>>>
+>>> i = Item("Test Item", "This is a test item.", 100)
+>>> print(i)
+Test Item
+-------
+This is a test item.
+Value: 100
+```
+
+#### is_item()
+
+Returns true. Function used to verify if objects passed to inventories are Item class.
+
+---
 # module::tagemap
 ---
 ## Class::GameMap()

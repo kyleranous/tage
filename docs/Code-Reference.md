@@ -488,12 +488,11 @@ This function will render a formatted title screen with the Title rendered at to
 
 # module::tageutils
 ## function::clearScreen()
-OS independed method of clearing the console
+OS independed method of clearing the console.
 
 ## function::transfer_item(item, fromObj, toObj)
 Transfers an inventory item between two(2) objects with an inventory
 
-**ex:**
 ```python
 from tageutils import *
 from tage_player import Player
@@ -507,13 +506,6 @@ m = MapTile("Test Tile")
 
 # Add one(1) "Test Item" to MapTile Inventory
 m.add_item(i, 1)
-
-# Check m and p for item in inventory
-m.check_item("test item")
-'True'
-
-p.check_item("test item")
-'False'
 
 # Transfer item from the MapTile to the Player
 transfer_item(i, m, p)

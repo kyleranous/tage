@@ -2,6 +2,7 @@
 class Player:
     
     def __init__(self, name):
+        
         if type(name) is not str:
             raise ValueError("Name must be a string")
         
@@ -35,8 +36,8 @@ class Player:
         except:
             raise ValueError("Item must be a tage Item() class or one of it's children")
     
-    def remove_item(self, item):
-        item = item.lower()
+    def remove_item(self, itemName):
+        item = itemName.lower()
         try:
             if item.lower() in self.inventory:
                 i = self.inventory[item.lower()]["item"]

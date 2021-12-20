@@ -354,6 +354,142 @@ Will spawn a single item. A random number generator will select the spawn range,
 
 **Class Functions**:
 
+# Module::tageplayer
+---
+
+## Class::Player(name)
+```python
+from modules.modulename import Player
+```
+
+### Class Variables
+
+#### name
+*str*
+
+Name variable stores the player's name.
+
+#### inventory
+*dict*
+
+inventory dictionary stores the players inventory (Item's the player can activly engage with.)
+
+#### money
+*int*
+
+variables stores the money the player has available to them. No mechanic currently exists for this variable and is in place for future use.
+
+#### posX
+*int*
+
+Players X position on the map.
+
+#### posY
+*int*
+
+Player's Y position on the map.
+
+### Class Functions
+---
+
+#### \_\_str\_\_()
+
+Returns a formatted string with the player's name
+
+```python
+>>> from modules.tageplayer import Player
+>>>
+>>> p = Player("Test Player")
+>>>
+>>> print(p)
+Player: Test Player
+```
+
+#### add_item(item, qty)
+Adjusts players inventory, adds item if qty is positive and item does not currently exists in inventory, adjusts quantity if item already exists. qty must be greater then or equal to 1
+
+```python
+>>> from modules.tageplayer import Player
+>>> from modules.tageitem import Item
+>>>
+>>> p = Player("Test Player")
+>>> i = Item("Test Item", "This is a test item", 100)
+>>>
+>>> p.add_item(i, 1)
+{'test item': {'item': <modules.tageitem.Item object at 0x0000014D7255D340>, 'qty': 1}}
+```
+
+#### remove_item(itemName)
+Removes an item from the player's inventory if the itme exists. Returns a runtime error if the item does not exist. itemName is a string object.
+
+```python
+...
+>>> p.remove_item(i.name)
+>>>
+>>> p.inventory
+{}
+```
+
+#### check_item(itemName)
+*bool*
+Returns true if the player has an item in their inventory with the name 'itemName', returns false if the item is not present in the player's inventory
+
+```python
+>>> from modules.tageplayer import Player
+>>> from modules.tageitem import Item
+>>>
+>>> p = Player("Test Player")
+>>> i = Item("Test Item", "This is a test item", 100)
+>>>
+>>> p.add_item(i, 1)
+>>>
+>>> p.check_item(i.name)
+True
+>>> p.remove_item(i.name)
+>>> p.check_item(i.name)
+False
+```
+
+#### has_inventory()
+Returns True. Function is used as a flag for the [transfer_item()](#functiontransfer_itemitem-fromobj-toobj) function.
+
+#### player_pos()
+Returns a list with the players current position. `[posX, posY]`
+
+#### update_pos(dx, dy)
+Incrimentally updates the players position. dx and dy are integers and denote the change in X or Y position. if the player's current position is `[1, 1]` and `update_pos(1, 0)` is called, the player's updated position would be `[2, 1]`. If we then call `update_pos(0, -1)`, the player's updated position would now be `[2, 0]`. 
+
+```python
+>>> from modules.tageplayer import Player
+>>>
+>>> p = Player("Test Player")
+>>> p.player_pos()
+[0, 0]
+>>> p.update_pos(1, 0)
+>>> p.player_pos()
+[1, 0]
+>>> p.update_pos(1, 1)
+>>> p.player_pos()
+[2, 1]
+>>> p.update_pos(0, -1)
+>>> p.player_pos()
+[2, 0]
+```
+
+#### set_pos(posX, posY)
+
+Sets the player's position on the map. posX and posY set the absolute coordinates of the player's position. posX and posY must be integers
+
+```python
+>>> from modules.tageplayer import Player
+>>>
+>>> p = Player("Test Player")
+>>> p.player_pos()
+[0, 0]
+>>> p.set_pos(2, 3)
+>>> p.player_pos()
+[2, 3]
+```
 # Module::tagesplash
 ---
 ## Class::TitleScreen()

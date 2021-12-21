@@ -1,4 +1,6 @@
 from tageutils import StateMachine
+
+
 # Responses
 YES_LIST = ('yes', 'yeah', 'ready', 'set', 'ok')
 NO_LIST = ('no', 'nah', 'nope')
@@ -6,7 +8,8 @@ NO_LIST = ('no', 'nah', 'nope')
 # Actions
 INSPECT_LIST = ('inspect', 'look', 'check')
 MOVE_LIST = ('move', 'go', 'walk', 'run')
-ACTION_LIST = ('attack', 'kill')
+MANIPULATE_LIST = ('pick', 'drop', 'put', 'store', 'take')
+ATTACK_LIST = ('attack', 'kill')
 
 # Directions
 DIRECTION_LIST = ('north', 'south', 'east', 'west', 'up', 'down', 'left', 'right', 'forward',
@@ -18,11 +21,9 @@ LOCATION_LIST = ('in', 'out', 'inside', 'outside')
 # Inverse Adverbs
 INVERSE_LIST = ('not')
 
-# inverse
+# Loop Lists
+START_LOOP_LIST = ('i', 'am', 'want', 'to', 'we', )
 
-# Test
-positive_adj = ["great", "super", "fun", "entertaining", "easy"]
-negative_adj = ["boring", "difficult", "ugly", "bad"]
 
 class TextParser(StateMachine):
 
@@ -36,6 +37,11 @@ class TextParser(StateMachine):
         self.add_state("error_state", None, end_state=1)
         self.add_state("moving_state", self.moving_state_transition)
         self.add_state("inversed_state", self.inversed_state_transition)
+        self.add_state("inspection_state", self.inspection_state_transition)
+        self.add_state("take_item_state", self.take_item_state_transition)
+        self.add_state("drop_item_state", self.drop_item_state_transition)
+        self.add_state("put_item_state", self.put_item_state_transition)
+        self.add_state("stow_item_state", self.stow_item_state_transition)
         self.set_start("Start")
 
     def parse_text(self,txt):
@@ -52,7 +58,7 @@ class TextParser(StateMachine):
         split_txt = txt.split(None,1)
         word, txt = split_txt if len(split_txt) > 1 else (txt, "")
         
-        if word.lower() == 'i' or word.lower() == "am":
+        if word.lower() in START_LOOP_LIST:
             newState = "start"
         elif word.lower() in YES_LIST:
             self.action = "YES"
@@ -63,8 +69,20 @@ class TextParser(StateMachine):
         elif word.lower() in MOVE_LIST:
             self.action = "MOVE"
             newState = "moving_state"
+        elif word.lower() in INSPECT_LIST:
+            self.action = "INSPECT"
+            newState = "inspection_state"
         elif word.lower() in INVERSE_LIST:
             newState = "inversed_state"
+        elif word.lower() in MANIPULATE_LIST:
+            if word.lower() == "pick" or word.lower() == "take":
+                newState = "take_item_state"
+            elif word.lower() == "drop":
+                newState = "drop_item_state"
+            elif word.lower() == "put":
+                newState = "put_item_state"
+            elif word.lower() == "store":
+                newState = "stow_item_state"
         else:
             newState = "error_state"
     
@@ -95,11 +113,80 @@ class TextParser(StateMachine):
             newState = "error_state"
         
         return (newState, txt)
+    
+    def inspection_state_transition(self, txt):
+        split_txt = txt.split(None, 1)
+        word, txt = split_txt if len(split_txt) > 1 else (txt, "")
+
+        if word.lower() == "at" or word.lower() == "the":
+            newState = "inspection_state"
+        elif word.lower() in LOCATION_LIST:
+            self.iobj = word.upper()
+            newState = "inspection_state"
+        else:
+            objString = word + " " + txt
+            self.dobj = objString.upper()
+            newState = "parsed_state"
+        
+        return (newState, txt)
+
+    def take_item_state_transition(self, txt):
+        split_txt = txt.split(None, 1)
+        word, txt = split_txt if len(split_txt) > 1 else (txt, "")
+        self.action = "TAKE"
+        if word.lower() == "up":
+            newState = "take_item_state"
+        else:
+            objStr = word + " " + txt
+            self.dobj = objStr.upper()
+            newState = "parsed_state"
+        
+        return (newState, txt)
+    
+    def drop_item_state_transition(self, txt):
+        split_txt = txt.split(None, 1)
+        word, txt = split_txt if len(split_txt) > 1 else (txt, "")
+
+        self.action = "DROP"
+        objStr = word + " " + txt
+        self.dobj = objStr.upper()
+        newState = "parsed_state"
+
+        return (newState, txt)
+    
+    def put_item_state_transition(self, txt):
+        split_txt = txt.split(None, 1)
+        word, txt = split_txt if len(split_txt) > 1 else (txt, "")
+
+        if word.lower() == "down":
+            newState = "drop_item_state"
+        elif word.lower() == "away":
+            newState = "stow_item_state"
+        else:
+            newState = "error_state"
+        
+        return (newState, txt)
+
+    def stow_item_state_transition(self, txt):
+        split_txt = txt.split(None, 1)
+        word, txt = split_txt if len(split_txt) > 1 else (txt, "")
+
+        self.action = "STOW"
+        objStr = word + " " + txt
+        self.dobj = objStr.upper()
+        newState = "parsed_state"
+
+        return (newState, txt)
+
+
+        
 
 
 
 t = TextParser() 
-testStrings = ["Move North", "I Move to the north", "run east", "walk to south", "go back", "I go west", "I am ready", "I am not Ready", "ready", "not ready"]   
+# testStrings = ["Move North", "I Move to the north", "run east", "walk to south", "go back", "I go west", "I am ready", "I am not Ready", "ready", "not ready", "I Want to move north"]   
+# testStrings = ["Inspect Water Bottle", "Look Out window", "Look out the window", "Inspect the bag", "Look in the box", "Look at the rock"]
+testStrings = ["take rock"]
 for test in testStrings:
     print(t.parse_text(test))
 

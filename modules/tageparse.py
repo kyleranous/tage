@@ -1,4 +1,4 @@
-from tageutils import StateMachine
+from modules.tageutils import StateMachine
 
 
 # Responses
@@ -58,6 +58,8 @@ class TextParser(StateMachine):
         split_txt = txt.split(None,1)
         word, txt = split_txt if len(split_txt) > 1 else (txt, "")
         
+        word = word.replace(',', '')
+
         if word.lower() in START_LOOP_LIST:
             newState = "start"
         elif word.lower() in YES_LIST:
@@ -186,7 +188,7 @@ class TextParser(StateMachine):
 t = TextParser() 
 # testStrings = ["Move North", "I Move to the north", "run east", "walk to south", "go back", "I go west", "I am ready", "I am not Ready", "ready", "not ready", "I Want to move north"]   
 # testStrings = ["Inspect Water Bottle", "Look Out window", "Look out the window", "Inspect the bag", "Look in the box", "Look at the rock"]
-testStrings = ["take rock"]
+testStrings = ["no, i am not ready"]
 for test in testStrings:
     print(t.parse_text(test))
 

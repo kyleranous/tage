@@ -50,7 +50,7 @@ class TextParser(StateMachine):
         self.iobj = ""
         newState = self.run(txt)
         if newState.upper() == "PARSED_STATE":
-            return [self.action, self.dobj, self.iobj]
+            return [self.action.rstrip(), self.dobj.rstrip(), self.iobj.rstrip()]
         elif newState.upper() == "ERROR_STATE":
             return ["ERROR"]
 
@@ -179,16 +179,3 @@ class TextParser(StateMachine):
         newState = "parsed_state"
 
         return (newState, txt)
-
-
-        
-
-
-
-t = TextParser() 
-# testStrings = ["Move North", "I Move to the north", "run east", "walk to south", "go back", "I go west", "I am ready", "I am not Ready", "ready", "not ready", "I Want to move north"]   
-# testStrings = ["Inspect Water Bottle", "Look Out window", "Look out the window", "Inspect the bag", "Look in the box", "Look at the rock"]
-testStrings = ["no, i am not ready"]
-for test in testStrings:
-    print(t.parse_text(test))
-

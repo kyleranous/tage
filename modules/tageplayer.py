@@ -51,8 +51,8 @@ class Player:
         except:
             raise RuntimeError("Item name does not exist in Inventory")
 
-    def check_item(self, item):
-        if item.lower() in self.inventory:
+    def check_item(self, itemName):
+        if itemName.lower() in self.inventory:
             return True
         else:
             return False
@@ -73,3 +73,13 @@ class Player:
                 raise ValueError("dx/dy must be integers")
         else:
             raise ValueError("dx/dy must be integers")
+    
+    def set_pos(self, posX, posY):
+        if type(posX) is int:
+            if type(posY) is int:
+                self.posX = posX
+                self.posY = posY
+            else:
+                raise ValueError("posX/posY must be integers")
+        else:
+            raise ValueError("posX/posY must be integers")

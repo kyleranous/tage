@@ -2,12 +2,12 @@ import time
 from colorama import Fore, Style
 from modules.tagemap import MapTile, StartTile
 from modules.tageplayer import Player
-from modules.tageitem import Item, Gold
+from modules.tageitem import Item
+from modules.tageparse import TextParser
 import modules.tagesplash as tagetitlescreen
 import modules.tageutils as tageutils
 
-# ToDo: Move clearConsole to a general utilities module
-# ToDo: Fix Function Name from clearConsole to clear_console
+
 
 
 # ToDo: Move yesList and noList to text_parser module
@@ -38,19 +38,21 @@ def draw_title_screen(errorMSG=None):  # Draw the Title Screen
     ans = input('> ')
     print(Style.RESET_ALL)
 
-    if ans.lower() in YES_LIST:
+    txtPrs = TextParser()
+    response = txtPrs.parse_text(ans)
+
+    if response[0].lower() == "yes":
         tageutils.clear_console()
         print("Every day we write a new page to our story.")
         time.sleep(3)
-        map_intro()
-
-    elif ans.lower() in NO_LIST or ans.lower() == "quit":
+        #map_intro()
+    elif response[0].lower() == "no" or ans.lower() == "quit":
         tageutils.clear_console()
         print("Goodbye!")
         time.sleep(3)
         quit()
     else:
-        draw_title_screen(f"I'm sorry, I do not understand {ans}.")
+        draw_title_screen(f"I'm sorry, I do not understand \"{ans}\".")
 
 
 # Room Layout
@@ -127,7 +129,8 @@ def main():
     mapMat.append([MapTile(name="Tipi"),
                 MapTile(name="Window"),
                 MapTile(name="Bed")])
-
+    
+    t = TextParser()
     draw_title_screen()
 
     mapMat[0][0].shortDescription = "You are standing in an Entryway"
@@ -161,10 +164,7 @@ def main():
     }
     
     i = Item("testItem", "Test Item", 0)
-    g = Gold(100)
-    
-    print(type(g))
-    # Create an Item and 
+ 
 
     #mapMat[0][2].map_items()
 

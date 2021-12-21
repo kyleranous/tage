@@ -702,3 +702,69 @@ m.check_item("test item")
 p.check_item("test item")
 'True'
 ```
+
+## class::StateMachine()
+```python
+from modules.tageutils import StateMachine
+```
+Class that impliments a Finite State Machine. Currently used as a parent class to [TextParser](#classtextparser). FSMs can be useful in a veriety of situations, like setting that current state of a player, enemey, or MapTile.
+<!---Need to add a section to documentation explaining what a Finite State Machine is --->
+
+### Class Variables
+
+#### handlers
+*dict*
+
+Dictionary object that holds handlers for each state, with the name of each state as a dictionary key.
+
+**Default Value: {}**
+
+#### startState
+*str*
+
+String Object that holds the name of the state to use as the starting condition for the finite state machine
+
+**Default Value: `None`**
+
+#### endStates
+*list*
+
+List of state names that are end states (No transition to another state available). 
+
+**Default Value: []**
+
+### Class Functions
+
+#### add_state(name, handler)
+Adds a state and handler to the Finite State Machine. Handlers must be defined seperately as functions, See (State Transition Definition)[#state_transition_definition] for information on creating state transitions. By default, states will not be set as an end_state. To set an endstate add `end_state=1` after the handler.
+
+```python
+from modules.tageutils import StateMachine
+
+s = StateMachine()
+s.add_state('start', start_transition)
+s.add_state('another_state', another_state_transition)
+```
+
+#### set_start(name)
+Takes the name of the start state for the state machine. 
+
+```python
+...
+s.set_start('start')
+```
+
+#### run(cargo)
+
+Runs the finite state machine recursevly with cargo being the initial condition. Run will exit when it hits an end state.
+
+```python
+...
+s.run("This text is the cargo")
+```
+
+## State Transition Definition
+<!---I need to add a section on defining state transition's here --->
+# module::tageparse
+
+## class::TextParser

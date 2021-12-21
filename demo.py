@@ -7,8 +7,7 @@ from modules.tageparse import TextParser
 import modules.tagesplash as tagetitlescreen
 import modules.tageutils as tageutils
 
-# ToDo: Move clearConsole to a general utilities module
-# ToDo: Fix Function Name from clearConsole to clear_console
+
 
 
 # ToDo: Move yesList and noList to text_parser module
@@ -131,7 +130,7 @@ def main():
                 MapTile(name="Window"),
                 MapTile(name="Bed")])
     
-
+    t = TextParser()
     draw_title_screen()
 
     mapMat[0][0].shortDescription = "You are standing in an Entryway"

@@ -1,6 +1,6 @@
 # TAGE
 **Text Adventure Game Engine** 
-
+![logo](images/logo.png)
 ### Links
 * [Code Reference](Code-Reference.md)
 * [Release Notes]

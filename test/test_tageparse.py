@@ -59,6 +59,26 @@ class test_parse(unittest.TestCase):
             self.assertEqual(response, ['STOW', 'ITEM', ''])
 
 
+    def test_yes_no_states(self):
+        
+        t = TextParser()
+        with self.subTest():
+            response = t.parse_text("Yes, I am ready")
+            self.assertEqual(response, ['YES', '', ''])
+        
+        with self.subTest():
+            response = t.parse_text("no, i am not ready")
+            self.assertEqual(response, ['NO', '', ''])
+
+        with self.subTest():
+            response = t.parse_text("I am not")
+            self.assertEqual(response, ['NO', '', ''])
+
+        with self.subTest():
+            response = t.parse_text("I am not ready")
+            self.assertEqual(response, ['NO', '', ''])
+
+
     def test_inspection_states(self):
         
         t = TextParser()

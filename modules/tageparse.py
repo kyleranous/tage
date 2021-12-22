@@ -2,14 +2,14 @@ from modules.tageutils import StateMachine
 
 
 # Responses
-YES_LIST = ('yes', 'yeah', 'ready', 'set', 'ok')
+YES_LIST = ('yes', 'yeah', 'ok', 'ready')
 NO_LIST = ('no', 'nah', 'nope')
 
 # Actions
 INSPECT_LIST = ('inspect', 'look', 'check')
 MOVE_LIST = ('move', 'go', 'walk', 'run')
 MANIPULATE_LIST = ('pick', 'drop', 'put', 'store', 'take')
-ATTACK_LIST = ('attack', 'kill')
+ATTACK_LIST = ('attack', 'kill', 'slash', 'stab', 'shoot')
 
 # Directions
 DIRECTION_LIST = ('north', 'south', 'east', 'west', 'up', 'down', 'left', 'right', 'forward',
@@ -94,7 +94,7 @@ class TextParser(StateMachine):
         split_txt = txt.split(None, 1)
         word, txt = split_txt if len(split_txt) > 1 else (txt, "")
 
-        if word.lower() in YES_LIST:
+        if word.lower() in YES_LIST or txt == "":
             self.action = "NO"
             newState = "parsed_state"
         else:

@@ -6,9 +6,43 @@ class GameMap():
 
     def __init__(self, name):
         self.name = name
+        self.tileMat = []
 
     def __str__(self):
         return "Map: {}".format(self.name)
+
+    def readMapFile(self, filename):
+        rawMap = []
+        mapFile = open(filename, 'r')
+        
+        while True:
+            mapRowRaw = mapFile.readline()
+            mapRowRaw = mapRowRaw.rstrip()
+
+            if not mapRowRaw:
+                break
+            else:
+                raw = mapRowRaw.split(',')
+                rawMap.insert(0, raw)
+
+        lenX = len(rawMap)
+        lenY = len(rawMap[0])
+        tmpMap = []
+        y = 0
+        while y < lenY:
+            x = 0
+            tmpRow = []
+            while x < lenX:
+                tmpRow.append(rawMap[x][y])
+                x += 1
+            
+            tmpMap.append(tmpRow)
+            y += 1
+        # ToDo:
+        # Create Map Definition File
+        # This Function should then create MapTile objects by reading the Map def file
+        
+        self.tileMat = tmpMap
 
 
 class MapTile():

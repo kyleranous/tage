@@ -49,10 +49,33 @@ Returns true. Function used to verify if objects passed to inventories are Item 
 ---
 # module::tagemap
 ---
-## Class::GameMap()
+## Class::GameMap(name)
 ```python
 from modules.tagemap import GameMap
+
+g = GameMap("Test Map")
 ```
+
+A game Map is a matrix of tiles that form the playable game area.
+### Class Variables
+
+#### name
+*string*
+
+Name of the Game Map
+
+#### tileMat
+*list*
+
+tileMat is the List of lists containing MapTile objects. 
+
+*Default Value: []*
+
+### Class Functions
+
+#### readMapFile(filename)
+<!---
+Reads in a mapfile of title 'filename' and builds the tileMat. Will create the MapTile objects by referencing the map definition file. --->
 
 ---
 ## Class::MapTile()

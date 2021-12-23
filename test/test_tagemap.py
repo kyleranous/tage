@@ -1,8 +1,31 @@
 import unittest
-from modules.tagemap import MapTile
+import os
+from modules.tagemap import *
 from modules.tageitem import Item
 
 
+
+class test_game_map(unittest.TestCase):
+
+    def test_map_creation(self):
+        g = GameMap("Test Map")
+
+        self.assertEqual(g.name, 'Test Map')
+        self.assertEqual(g.tileMat, [])
+
+    def test_map_import(self):
+        g = GameMap("Test Map")
+        path = os.path.dirname(__file__)
+        filename = os.path.join(path, 'assets/mapTest.csv')
+        g.readMapFile(filename)
+        self.assertTrue(len(g.tileMat) == 6)
+        self.assertTrue(len(g.tileMat[0]) == 6)
+        self.assertEqual(g.tileMat[0][0], 'Tile 00')
+        self.assertEqual(g.tileMat[5][5], 'Tile 55')
+        self.assertEqual(g.tileMat[3][2], 'Tile 32')
+        self.assertFalse(g.tileMat[1][1] == 'Tile 22')
+
+        
 class test_map_tile(unittest.TestCase):    
     
     def test_tile_creation(self):

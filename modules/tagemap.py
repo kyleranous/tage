@@ -38,12 +38,22 @@ class GameMap():
             
             tmpMap.append(tmpRow)
             y += 1
-        # ToDo:
-        # Create Map Definition File
-        # This Function should then create MapTile objects by reading the Map def file
+        
+        # Read in Tile Definition File
+        # Parse Data into a Dictionary
+        # Add Dictionary to TileDict
+        # Loop through TileDict and pass Tile Information to _createMapTile
+        # Add Map Tiles to Row List
+        # Add Map Row to tileMat
         
         self.tileMat = tmpMap
 
+    def _createMapTile(tileData):
+        # Creates a MapTile from tileDate imported from the TileDat 
+        # tileData should be a dictionary
+        m = MapTile(tileData['name'])
+        m.shortDescription = tileData['shortDescription']
+        m.intro = tileData['intro']
 
 class MapTile():
     # Base MapTile Class - Defines the minimum items necessary to create a map tile and the minimum functions needed for them

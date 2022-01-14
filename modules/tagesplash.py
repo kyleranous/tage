@@ -153,15 +153,15 @@ class TitleScreen():
 def demo():
 
     t = TitleScreen()
-    t.add_title_line("G A M E")
-    t.add_title_line("T I T L E")
+    t.add_title_line("SOTU")
+    t.add_title_line("DEV")
     t.color = "green"
-    t.caption = "Version 0.1alpha(DEMO)"
+    #t.caption = "Version 0.1alpha(DEMO)"
     t.width = 100
-    t.add_banner_line("This is a banner!")
-    t.add_banner_line("Where you can put your game tagline.")
-    t.bannerColor = "blue"
-    t.add_menu_item(["Continue", "New Game", "Settings", "Quit", "Menu Item", "Another Menu Item"])
+    #t.add_banner_line("This is a banner!")
+    #t.add_banner_line("Where you can put your game tagline.")
+    #t.bannerColor = "blue"
+    #t.add_menu_item(["Continue", "New Game", "Settings", "Quit", "Menu Item", "Another Menu Item"])
     t.render_title_screen()
     
 

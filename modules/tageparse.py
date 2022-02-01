@@ -1,3 +1,15 @@
+'''
+    Basic Natural Language Processor using Finite State Machines to convert player's 
+    written inputs into directions the engine can understand. tageparse attempts to 
+    break input text into an Action (What is Happening), A Direct Object(Object the action
+    is happening to), and an Indirect Object (What the action is being done with).
+
+    IE:
+    "Slash the goblin with the sword" would be parsed into:
+    Action: ATTACK
+    Direct Object: GOBLIN
+    Indirect Object: SWORD 
+'''
 from modules.tageutils import StateMachine
 
 
